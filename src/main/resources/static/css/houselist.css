@@ -1,0 +1,85 @@
+/* **************** Contents Area Start **************** */
+#contents {
+  height: 800px;
+}
+#contents .container{
+	padding: 0;
+}
+/* 검색 창 헤더 */
+#contents .search_header {
+  margin: auto;
+  height: auto;
+  padding: 10px 0;
+}
+
+#contents .search_header>div {
+  margin-right: 15px;
+}
+
+#contents .search_header select {
+  width : 150px;
+  margin-right: 10px;
+}
+
+#contents .search_header #search_btn {
+  height: 41px;
+  padding: 5px;
+}
+
+/*  ************* 검색 창 Content ************* */
+#contents .search_content {
+  height: 600px;
+  width: 100%;
+margin:0;
+}
+
+/* 지도 */
+ #contents #map {
+  width: 75%;
+  height: 100%;
+  background-size: cover;
+  float: left;
+} 
+
+/* 아파트 리스트 */
+#contents .apt_list {
+  width: 25%;
+  height: 100%;
+  padding: 20px;
+  /* 내용 넘치면 스크롤바 생기게 */
+  overflow: auto;
+}
+
+#contents .apt_list ul li {
+  display: flex;
+  justify-content: left;
+  height: 120px;
+  margin-bottom: 20px;
+}
+
+#contents .apt_list ul li .apt_img {
+  width: 100px;
+  height: 120px;
+}
+
+#contents .apt_list ul li .apt_img img {
+  width: 100%;
+  height: 100%;
+  /* 이미지 크기 조정*/
+  object-fit: cover;
+}
+
+#contents .apt_list .right {
+  margin-left: 20px;
+  padding: 16px 0 0;
+}
+
+#contents .apt_list .right>div {
+  margin-bottom: 10px;
+}
+
+#contents .apt_list ul li .apt_name {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}

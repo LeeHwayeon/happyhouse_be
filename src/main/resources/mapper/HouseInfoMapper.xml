@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.ssafy.happyhouse.model.mapper.HouseInfoMapper">
+	<select id="selectGuDong" resultType="com.ssafy.happyhouse.model.dto.HouseInfo">
+		select distinct gugunname, dongname 
+		from dongcode 
+		where sidoname = "서울특별시"
+	</select>
+	
+	<select id="selectDong" resultType="com.ssafy.happyhouse.model.dto.HouseInfo">
+		select distinct dongname 
+		from dongcode 
+		where sidoname = "서울특별시"  
+		order by dongname
+	</select>
+	
+	<select id="selectGu" resultType="com.ssafy.happyhouse.model.dto.HouseInfo">
+		select distinct gugunname 
+		from dongcode 
+		where sidoname = "서울특별시" 
+		order by gugunname 
+	</select>
+	
+	<select id="selectDetail" resultType="com.ssafy.happyhouse.model.dto.HouseInfo">
+		select hi.aptName, hi.buildYear, hd.dealAmount, hd.dealYear, hd.dealMonth, hd.dealDay, hd.area, hd.floor 
+		from houseinfo hi join housedeal hd 
+		on hi.aptCode=hd.aptCode 
+		where hd.no=#{aptCode}
+	</select>
+</mapper>

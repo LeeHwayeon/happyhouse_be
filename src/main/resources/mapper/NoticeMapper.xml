@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.ssafy.happyhouse.model.mapper.NoticeMapper">
+
+	<insert id="insert"
+		parameterType="com.ssafy.happyhouse.model.dto.NoticeDto">
+		INSERT INTO
+		N_TB(NWRITER, NTITLE, NCONTEXT,NDATE, NCOUNT)
+		VALUES(#{nwriter},#{ntitle},#{ncontext},NOW(), 0)
+	</insert>
+
+	<update id="update"
+		parameterType="com.ssafy.happyhouse.model.dto.NoticeDto">
+		UPDATE N_TB
+		SET NTITLE=#{ntitle} , NCONTEXT=#{ncontext}
+		WHERE NNO = #{nno}
+	</update>
+
+	<update id="updateReadCount" parameterType="int">
+		UPDATE N_TB SET
+		NCOUNT = NCOUNT+1 WHERE nno = #{nno}
+	</update>
+
+	<select id="selectOne" parameterType="int"
+		resultType="com.ssafy.happyhouse.model.dto.NoticeDto">
+		SELECT nno,NWRITER, NTITLE, NCONTEXT, NCOUNT, NDATE
+		FROM
+		N_TB WHERE
+		nno = #{nno}
+	</select>
+
+	<delete id="Delete" parameterType="int">
+		delete
+		from N_TB
+		where nno =
+		#{nno}
+	</delete>
+
+	<select id="selectList"
+		resultType="com.ssafy.happyhouse.model.dto.NoticeDto">
+		SELECT nno, NWRITER, NTITLE, NCONTEXT, NCOUNT, NDATE
+		FROM
+		N_TB ORDER BY nno DESC
+		LIMIT #{start},#{count}
+	</select>
+
+	<select id="searchList"
+		resultType="com.ssafy.happyhouse.model.dto.NoticeDto">
+		SELECT nno, NWRITER, NTITLE, NCONTEXT, NCOUNT, NDATE
+		FROM
+		N_TB
+		WHERE NTITLE like CONCAT('%', #{ntitle}, '%')
+		ORDER BY nno DESC
+		LIMIT
+		#{start},#{count}
+	</select>
+
+	<select id="selectTotalCount" resultType="int">
+		SELECT COUNT(*) FROM
+		N_TB
+	</select>
+
+	<select id="searchTotalCount" resultType="int">
+		SELECT COUNT(*) FROM
+		N_TB
+		WHERE NTITLE like CONCAT('%', #{ntitle}, '%')
+	</select>
+</mapper>
