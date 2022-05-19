@@ -44,14 +44,11 @@ public class NoticeController {
 	}
 
 	@ApiOperation(value = "게시글 상세 보기")
-	@GetMapping("/ajax/read/{nno}")
-	public ResponseEntity<?> read(@PathVariable("nno") int nno /* HttpSession session */) {
+	@GetMapping("/ajax/read/{nno}/{userid}")
+	public ResponseEntity<?> read(@PathVariable("nno") int nno ,@PathVariable("userid") String userid) {
 		try {
-			System.out.println(nno);
-//			UserDto userDto = (UserDto) session.getAttribute("userinfo");
-//			String userInfo = userDto.getUid();
-//			System.out.println(userInfo);
-			return new ResponseEntity<Map<String, Object>>(service.read(nno /* userInfo */), HttpStatus.ACCEPTED);
+			System.out.println(userid);
+			return new ResponseEntity<Map<String, Object>>(service.read(nno,userid), HttpStatus.ACCEPTED);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

@@ -20,7 +20,6 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public int write(NoticeDto notice) throws SQLException {
 		System.out.println("before insert nno : " + notice.getNno());
-		
 		System.out.println("after insert nno : " + notice.getNno());
 		return mapper.insert(notice);
 	}
@@ -86,16 +85,14 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public Map<String, Object> read(int nno/*, String userInfo*/) throws SQLException {
+	public Map<String, Object> read(int nno, String userid) throws SQLException {
 		NoticeDto notice = mapper.selectOne(nno);
-
-//		if (notice != null && !notice.getNwriter().equals(userInfo)) {
-//			mapper.updateReadCount(nno); // 조회수 업데이트
-//			notice = mapper.selectOne(nno);
-//		}
+		if (notice != null && !notice.getNwriter().equals(userid)) {
+			mapper.updateReadCount(nno); // 조회수 업데이트
+			notice = mapper.selectOne(nno);
+		}
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("board", notice); // 현재 읽는 게시글 내용
-//		map.put("files", fdao.selectList(bno)); // 해당 게시글에 첨부된 파일 목록
 
 		return map;
 	}
@@ -107,7 +104,6 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public int update(NoticeDto notice) throws SQLException {
-		
 		return mapper.update(notice);
 	}
 	

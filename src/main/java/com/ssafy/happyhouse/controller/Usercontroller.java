@@ -32,9 +32,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
-@Api("MemberController V1")
-@RequestMapping("/user")
 @RestController
+@RequestMapping("/user")
+@Api("MemberController V1")
 @CrossOrigin(origins = { "*" }, maxAge = 6000)
 public class Usercontroller {
 	
@@ -104,71 +104,41 @@ public class Usercontroller {
 		}
 		return new ResponseEntity<Map<String, Object>>(resultMap, status);
 	}
+		
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	@GetMapping("/idcheck")
-	public @ResponseBody String idCheck(@RequestParam("ckid") String checkId) throws Exception {
-		int idCount = userService.idCheck(checkId);
-		JSONObject json = new JSONObject();
-		json.put("idcount", idCount);
-		return json.toString();
-	}
-	
-	@PostMapping("/sign")
-	public String register(UserDto userDto, Model model) throws Exception {
-		logger.debug("memberDto info : {}", userDto);
-		userService.registerMember(userDto);
-		return "redirect:/user/login";
-	}
-	
-//	@PostMapping("/login")
-//	public String login(@RequestParam Map<String, String> map, Model model, HttpSession session,
-//			HttpServletResponse response) throws Exception {
-//		logger.debug("map : {}", map.get("uid"));
-//		System.out.println(map.keySet());
-//		UserDto userDto = userService.login(map);
-//		if (userDto != null) {
-//			session.setAttribute("userinfo", userDto);
-//			return "redirect:/";
-//		} else {
-//			model.addAttribute("msg", "아이디 또는 비밀번호 확인 후 다시 로그인하세요!");
-//			return "Login";
-//		}
+//	
+//	
+//	@GetMapping("/idcheck")
+//	public @ResponseBody String idCheck(@RequestParam("ckid") String checkId) throws Exception {
+//		int idCount = userService.idCheck(checkId);
+//		JSONObject json = new JSONObject();
+//		json.put("idcount", idCount);
+//		return json.toString();
 //	}
-	
-	@GetMapping("/logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "redirect:/";
-	}
-	
-	
-	
-	
-	@GetMapping("/delete")
-	public String delete(HttpSession session) throws Exception{
-		UserDto userDto = (UserDto) session.getAttribute("userinfo");
-		userService.userDelete(userDto.getUid());
-		session.invalidate();
-		return "index";
-	}
-	
-	@PostMapping("/update")
-	public String update(UserDto userDto, HttpSession session) throws Exception {
-		userService.userUpdate(userDto);
-		session.setAttribute("userinfo", userDto);
-		return "MyPage";
-	}
-	
-	
+//	
+//	@PostMapping("/sign")
+//	public String register(UserDto userDto, Model model) throws Exception {
+//		logger.debug("memberDto info : {}", userDto);
+//		userService.registerMember(userDto);
+//		return "redirect:/user/login";
+//	}
+//		
+//	
+//	@GetMapping("/delete")
+//	public String delete(HttpSession session) throws Exception{
+//		UserDto userDto = (UserDto) session.getAttribute("userinfo");
+//		userService.userDelete(userDto.getUid());
+//		session.invalidate();
+//		return "index";
+//	}
+//	
+//	@PostMapping("/update")
+//	public String update(UserDto userDto, HttpSession session) throws Exception {
+//		userService.userUpdate(userDto);
+//		session.setAttribute("userinfo", userDto);
+//		return "MyPage";
+//	}
+//	
+//	
 	
 }

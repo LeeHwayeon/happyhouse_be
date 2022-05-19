@@ -19,5 +19,12 @@
         set ccontent = #{ccontent}
         where cno = #{cno}
     </update>
+    
+   <delete id="delete">
+   	delete
+		from comment_tb
+		where cno =
+		#{cno}
+   </delete>
 
 </mapper>
