@@ -13,7 +13,7 @@
 		values (#{uid}, #{upass}, #{uname}, #{ubirth}, #{ugender},#{uadd})
 	</insert>
 	
-	<select id="login" parameterType="map" resultType="com.ssafy.happyhouse.model.dto.UserDto">
+	<select id="login" parameterType="com.ssafy.happyhouse.model.dto.UserDto" resultType="com.ssafy.happyhouse.model.dto.UserDto">
 		select *
 		from user_tb
 		where uid = #{uid} and upass = #{upass}
@@ -30,5 +30,11 @@
 		set upass = #{upass}, uname= #{uname},uadd= #{uadd}
 		where uid = #{uid}
 	</update>
+	
+	<select id="userInfo" parameterType="String" resultType="com.ssafy.happyhouse.model.dto.UserDto">
+		select uid, upass, uname, ubirth, ugender,uadd
+		from user_tb
+		where uid = #{uid}
+	</select>
 
 </mapper>

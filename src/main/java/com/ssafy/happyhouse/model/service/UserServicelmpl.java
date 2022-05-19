@@ -25,8 +25,10 @@ public class UserServicelmpl implements UserService{
 	}
 	
 	@Override
-	public UserDto login(Map<String, String> map) throws Exception {
-		return usermapper.login(map);
+	public UserDto login(UserDto user) throws Exception {
+		if(user.getUid() == null || user.getUpass() == null)
+			return null;
+		return usermapper.login(user);
 	}
 
 	@Override
@@ -37,5 +39,10 @@ public class UserServicelmpl implements UserService{
 	@Override
 	public int userUpdate(UserDto userDto) throws Exception {
 		return usermapper.userUpdate(userDto);
+	}
+	
+	@Override
+	public UserDto userInfo(String uid) throws Exception {
+		return usermapper.userInfo(uid);
 	}
 }

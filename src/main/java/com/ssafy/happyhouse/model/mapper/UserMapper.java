@@ -8,11 +8,13 @@ import com.ssafy.happyhouse.model.dto.UserDto;
 
 public interface UserMapper {
 	
-	UserDto login(Map<String, String> map) throws Exception;
+	UserDto login(UserDto user) throws Exception;
 	
 	int idCheck(String checkId) throws Exception;
 	void registerMember(UserDto userDto) throws Exception;
 	
 	int userDelete(String uid) throws Exception;
 	int userUpdate(UserDto userDto) throws Exception;
+	
+	public UserDto userInfo(String uid) throws Exception;
 }

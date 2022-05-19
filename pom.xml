@@ -88,17 +88,13 @@
 		<artifactId>json</artifactId>
 		<version>20220320</version>
 	</dependency>
-	<!-- jwt 파일 -->
-	<!-- <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
+	<!-- JWT를 위한 의존성 추가 -->
+		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
 		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt</artifactId>
-			<version>0.9.1</version>
-		</dependency> -->
-
+		    <groupId>io.jsonwebtoken</groupId>
+		    <artifactId>jjwt</artifactId>
+		    <version>0.9.1</version>
+		</dependency>
 	
 	
     </dependencies>
