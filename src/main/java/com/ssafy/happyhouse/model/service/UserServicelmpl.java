@@ -38,6 +38,7 @@ public class UserServicelmpl implements UserService{
 
 	@Override
 	public int userUpdate(UserDto userDto) throws Exception {
+		System.out.println("서비스" +userDto);
 		return usermapper.userUpdate(userDto);
 	}
 	

@@ -27,7 +27,7 @@
 	
 	<update id="userUpdate" parameterType="com.ssafy.happyhouse.model.dto.UserDto">
 		UPDATE user_tb 
-		set upass = #{upass}, uname= #{uname},uadd= #{uadd}
+		set upass = #{upass},uadd= #{uadd}
 		where uid = #{uid}
 	</update>
 	

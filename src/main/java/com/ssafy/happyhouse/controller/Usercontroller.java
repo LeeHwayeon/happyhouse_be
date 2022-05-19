@@ -15,9 +15,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -105,6 +107,20 @@ public class Usercontroller {
 		return new ResponseEntity<Map<String, Object>>(resultMap, status);
 	}
 		
+	@PutMapping("/update")
+	public String update(@RequestBody UserDto userDto) throws Exception {
+		System.out.println(userDto);
+		if(userService.userUpdate(userDto)>0) {
+			return "정보 수정이 완료되었습니다.";}
+	return "정보 수정에 실패했습니다.";
+	}
+	
+	@DeleteMapping("/delete/{uid}")
+	public String delete(@PathVariable("uid") String uid) throws Exception{
+		if(userService.userDelete(uid)>0) {
+			return "정보 삭제이 완료되었습니다.";}
+		return "정보 삭제에 실패했습니다.";
+	}
 	
 //	
 //	
@@ -124,20 +140,9 @@ public class Usercontroller {
 //	}
 //		
 //	
-//	@GetMapping("/delete")
-//	public String delete(HttpSession session) throws Exception{
-//		UserDto userDto = (UserDto) session.getAttribute("userinfo");
-//		userService.userDelete(userDto.getUid());
-//		session.invalidate();
-//		return "index";
-//	}
+
 //	
-//	@PostMapping("/update")
-//	public String update(UserDto userDto, HttpSession session) throws Exception {
-//		userService.userUpdate(userDto);
-//		session.setAttribute("userinfo", userDto);
-//		return "MyPage";
-//	}
+
 //	
 //	
 	
