@@ -11,7 +11,7 @@ public interface UserMapper {
 	UserDto login(UserDto user) throws Exception;
 	
 	int idCheck(String checkId) throws Exception;
-	void registerMember(UserDto userDto) throws Exception;
+	int registerMember(UserDto userDto) throws Exception;
 	
 	int userDelete(String uid) throws Exception;
 	int userUpdate(UserDto userDto) throws Exception;

@@ -122,28 +122,20 @@ public class Usercontroller {
 		return "정보 삭제에 실패했습니다.";
 	}
 	
-//	
-//	
-//	@GetMapping("/idcheck")
-//	public @ResponseBody String idCheck(@RequestParam("ckid") String checkId) throws Exception {
-//		int idCount = userService.idCheck(checkId);
-//		JSONObject json = new JSONObject();
-//		json.put("idcount", idCount);
-//		return json.toString();
-//	}
-//	
-//	@PostMapping("/sign")
-//	public String register(UserDto userDto, Model model) throws Exception {
-//		logger.debug("memberDto info : {}", userDto);
-//		userService.registerMember(userDto);
-//		return "redirect:/user/login";
-//	}
-//		
-//	
-
-//	
-
-//	
-//	
 	
+	
+	@GetMapping("/idcheck")
+	public @ResponseBody String idCheck(@RequestParam("uid") String uid) throws Exception {
+		if(userService.idCheck(uid)>=1)
+			return "FAIL";
+		return "SUCCESS";
+	}
+	
+	@PostMapping("/sign")
+	public String register(@RequestBody UserDto userDto) throws Exception {
+		if(userService.registerMember(userDto)>=1)
+			return "FAIL";
+		return "SUCCESS";
+	}
+
 }

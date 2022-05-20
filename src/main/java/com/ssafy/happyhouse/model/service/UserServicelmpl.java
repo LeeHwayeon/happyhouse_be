@@ -20,8 +20,8 @@ public class UserServicelmpl implements UserService{
 	}
 	
 	@Override
-	public void registerMember(UserDto userDto) throws Exception {
-		usermapper.registerMember(userDto);
+	public int registerMember(UserDto userDto) throws Exception {
+		return usermapper.registerMember(userDto);
 	}
 	
 	@Override
@@ -38,7 +38,6 @@ public class UserServicelmpl implements UserService{
 
 	@Override
 	public int userUpdate(UserDto userDto) throws Exception {
-		System.out.println("서비스" +userDto);
 		return usermapper.userUpdate(userDto);
 	}
 	
