@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.ssafy.happyhouse.model.mapper.SidoGugunDongCodeMapper">
+
+	<select id="selectSido"
+		resultType="com.ssafy.happyhouse.model.dto.SidoGugunDongCodeDto">
+		SELECT left(SIDOCODE,2), SIDONAME
+		FROM SIDOCODE;
+	</select>
+
+	<select id="selectGugun" parameterType="String"
+		resultType="com.ssafy.happyhouse.model.dto.SidoGugunDongCodeDto">
+		SELECT substring(GUGUNCODE,1,5), GUGUNNAME
+		FROM GUGUNCODE
+		WHERE left(GUGUNCODE, 2) = #{sidocode};
+	</select>
+
+	<select id="selectDong" parameterType="String"
+		resultType="com.ssafy.happyhouse.model.dto.SidoGugunDongCodeDto">
+		SELECT substring(DONGCODE,5,5), DONGNAME
+		FROM DONGCODE
+		WHERE substring(DONGCODE, 1, 5) = #{guguncode};
+	</select>
+
+</mapper>
