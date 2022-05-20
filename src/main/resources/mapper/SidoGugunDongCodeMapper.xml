@@ -5,22 +5,22 @@
 
 	<select id="selectSido"
 		resultType="com.ssafy.happyhouse.model.dto.SidoGugunDongCodeDto">
-		SELECT left(SIDOCODE,2), SIDONAME
+		SELECT left(SIDOCODE,2) as sidocode, SIDONAME
 		FROM SIDOCODE;
 	</select>
 
 	<select id="selectGugun" parameterType="String"
 		resultType="com.ssafy.happyhouse.model.dto.SidoGugunDongCodeDto">
-		SELECT substring(GUGUNCODE,1,5), GUGUNNAME
+		SELECT substring(GUGUNCODE,1,5) as guguncode, GUGUNNAME
 		FROM GUGUNCODE
 		WHERE left(GUGUNCODE, 2) = #{sidocode};
 	</select>
 
 	<select id="selectDong" parameterType="String"
 		resultType="com.ssafy.happyhouse.model.dto.SidoGugunDongCodeDto">
-		SELECT substring(DONGCODE,5,5), DONGNAME
+		SELECT substring(DONGCODE,5,5) as dongcode, DONGNAME
 		FROM DONGCODE
-		WHERE substring(DONGCODE, 1, 5) = #{guguncode};
+		WHERE substring(DONGCODE, 1, 5) = #{guguncode} AND DONGNAME IS NOT NULL;
 	</select>
 
 </mapper>

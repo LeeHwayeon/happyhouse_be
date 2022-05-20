@@ -44,6 +44,7 @@ public class SidoGugunDongCodeController {
 	@GetMapping("/dong/{guguncode}")
 	public ResponseEntity<?> selectDong(@PathVariable String guguncode) {
 		try {
+			System.out.println(service.selectDong(guguncode));
 			return new ResponseEntity<List>(service.selectDong(guguncode), HttpStatus.ACCEPTED);
 		} catch (Exception e) {
 			e.printStackTrace();
