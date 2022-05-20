@@ -124,8 +124,8 @@ public class Usercontroller {
 	
 	
 	
-	@GetMapping("/idcheck")
-	public @ResponseBody String idCheck(@RequestParam("uid") String uid) throws Exception {
+	@GetMapping("/idcheck/{uid}")
+	public @ResponseBody String idCheck(@PathVariable("uid") String uid) throws Exception {
 		if(userService.idCheck(uid)>=1)
 			return "FAIL";
 		return "SUCCESS";
