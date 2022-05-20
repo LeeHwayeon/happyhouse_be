@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.happyhouse.model.dto.SidoGugunDongCodeDto;
 import com.ssafy.happyhouse.model.service.SidoGugunDongCodeService;
 
 @RestController
@@ -46,6 +47,18 @@ public class SidoGugunDongCodeController {
 		try {
 			System.out.println(service.selectDong(guguncode));
 			return new ResponseEntity<List>(service.selectDong(guguncode), HttpStatus.ACCEPTED);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@GetMapping("/addcode/{addcode}")
+	public ResponseEntity<?> selectadd(@PathVariable String addcode) {
+		System.out.println(addcode);
+		try {
+			System.out.println(service.selectaddress(addcode));
+			return new ResponseEntity<SidoGugunDongCodeDto>(service.selectaddress(addcode), HttpStatus.ACCEPTED);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
