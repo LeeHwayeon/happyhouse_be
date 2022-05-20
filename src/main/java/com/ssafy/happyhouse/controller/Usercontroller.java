@@ -132,4 +132,29 @@ public class Usercontroller {
 		return "SUCCESS";
 	}
 
+	@GetMapping("/search/{uid}/{uname}")
+	public String userCheck(@PathVariable("uid") String uid, @PathVariable("uname") String uname) throws Exception {
+		if (userService.userCheck(uid, uname) >= 1)
+			return "SUCCESS";
+		return "FAIL";
+	}
+
+	@PutMapping("/updatepass")
+	public String updatePass(@RequestBody String uid) throws Exception {
+		String upass = "";
+		for (int i = 0; i < 8; i++) {
+			int rndVal = (int) (Math.random() * 62);
+			if (rndVal < 10) {
+				upass += rndVal;
+			} else if (rndVal > 35) {
+				upass += (char) (rndVal + 61);
+			} else {
+				upass += (char) (rndVal + 55);
+			}
+		}
+		if(userService.updatePass(uid, upass)>=1)
+			return upass;
+		return "FAIL";
+	}
+
 }

@@ -43,4 +43,15 @@ public class UserServicelmpl implements UserService {
 	public UserDto userInfo(String uid) throws Exception {
 		return usermapper.userInfo(uid);
 	}
+
+	@Override
+	public int userCheck(String uid, String uname) throws Exception {
+		System.out.println(usermapper.userCheck(uid, uname));
+		return usermapper.userCheck(uid, uname);
+	}
+
+	@Override
+	public int updatePass(String uid, String upass) throws Exception {
+		return usermapper.updatePass(uid, upass);
+	}
 }
