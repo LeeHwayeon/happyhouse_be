@@ -3,35 +3,44 @@
 <mapper namespace="com.ssafy.happyhouse.model.mapper.UserMapper">
 
 	<select id="idCheck" parameterType="string" resultType="int">
-		select count(uid)
+		select
+		count(uid)
 		from user_tb
 		where uid = #{uid}
 	</select>
-	
-	<insert id="registerMember" parameterType="com.ssafy.happyhouse.model.dto.UserDto">
-		insert into user_tb (uid, upass, uname, ubirth, ugender,uadd)
-		values (#{uid}, #{upass}, #{uname}, #{ubirth}, #{ugender},#{uadd})
+
+	<insert id="registerMember"
+		parameterType="com.ssafy.happyhouse.model.dto.UserDto">
+		insert into user_tb (uid, upass, uname, ubirth,
+		ugender,uadd)
+		values (#{uid}, #{upass}, #{uname}, #{ubirth},
+		#{ugender},#{uadd})
 	</insert>
-	
-	<select id="login" parameterType="com.ssafy.happyhouse.model.dto.UserDto" resultType="com.ssafy.happyhouse.model.dto.UserDto">
+
+	<select id="login"
+		parameterType="com.ssafy.happyhouse.model.dto.UserDto"
+		resultType="com.ssafy.happyhouse.model.dto.UserDto">
 		select *
 		from user_tb
 		where uid = #{uid} and upass = #{upass}
 	</select>
-	
+
 	<delete id="userDelete" parameterType="String">
 		delete
 		from user_tb
-		where uid = #{uid}
+		where
+		uid = #{uid}
 	</delete>
-	
-	<update id="userUpdate" parameterType="com.ssafy.happyhouse.model.dto.UserDto">
-		UPDATE user_tb 
+
+	<update id="userUpdate"
+		parameterType="com.ssafy.happyhouse.model.dto.UserDto">
+		UPDATE user_tb
 		set upass = #{upass},uadd= #{uadd}
 		where uid = #{uid}
 	</update>
-	
-	<select id="userInfo" parameterType="String" resultType="com.ssafy.happyhouse.model.dto.UserDto">
+
+	<select id="userInfo" parameterType="String"
+		resultType="com.ssafy.happyhouse.model.dto.UserDto">
 		select uid, upass, uname, ubirth, ugender,uadd
 		from user_tb
 		where uid = #{uid}

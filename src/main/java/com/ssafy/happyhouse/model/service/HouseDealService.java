@@ -9,8 +9,7 @@ public interface HouseDealService {
 	List<HouseDeal> selectDongDeal(String dongName) throws Exception;
 
 	List<HouseDeal> selectAptDeal(String aptName) throws Exception;
-	
-	List<HouseDeal> selectDongAptName(String dongName, String aptName) throws Exception;
 
+	List<HouseDeal> selectDongAptName(String dongName, String aptName) throws Exception;
 
 }

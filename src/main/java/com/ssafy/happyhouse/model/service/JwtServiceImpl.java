@@ -1,4 +1,5 @@
 package com.ssafy.happyhouse.model.service;
+
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.Map;

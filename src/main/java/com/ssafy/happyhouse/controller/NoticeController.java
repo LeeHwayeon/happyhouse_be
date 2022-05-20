@@ -46,10 +46,10 @@ public class NoticeController {
 
 	@ApiOperation(value = "게시글 상세 보기")
 	@GetMapping("/ajax/read/{nno}/{userid}")
-	public ResponseEntity<?> read(@PathVariable("nno") int nno ,@PathVariable("userid") String userid) {
+	public ResponseEntity<?> read(@PathVariable("nno") int nno, @PathVariable("userid") String userid) {
 		try {
 			System.out.println(userid);
-			return new ResponseEntity<Map<String, Object>>(service.read(nno,userid), HttpStatus.ACCEPTED);
+			return new ResponseEntity<Map<String, Object>>(service.read(nno, userid), HttpStatus.ACCEPTED);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -81,10 +81,11 @@ public class NoticeController {
 		}
 		return "게시글 수정에 실패했습니다.";
 	}
-	
+
 	@ApiOperation(value = "게시글 목록")
 	@GetMapping("/{keyword}") // 동기요청 -> 비동기요청(@ResponseBody)
-	public ResponseEntity<?> search(@RequestParam(value = "p", defaultValue = "1") int page, @PathVariable("keyword") String ntitle) {
+	public ResponseEntity<?> search(@RequestParam(value = "p", defaultValue = "1") int page,
+			@PathVariable("keyword") String ntitle) {
 		try {
 			return new ResponseEntity<Map<String, Object>>(service.search(page, ntitle), HttpStatus.ACCEPTED);
 		} catch (SQLException e) {

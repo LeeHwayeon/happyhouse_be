@@ -12,6 +12,6 @@ public interface SidoGugunDongCodeMapper {
 	List<SidoGugunDongCodeDto> selectGugun(String sidocode) throws SQLException;
 
 	List<SidoGugunDongCodeDto> selectDong(String guguncode) throws SQLException;
-	
-	SidoGugunDongCodeDto selectaddress(String addcode) throws SQLException;
+
+	SidoGugunDongCodeDto selectAddress(String addcode) throws SQLException;
 }

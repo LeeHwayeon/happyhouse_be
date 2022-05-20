@@ -1,4 +1,5 @@
 package com.ssafy.happyhouse.controller;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,13 +15,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 
 import io.swagger.annotations.ApiOperation;
 
@@ -34,7 +33,8 @@ public class NaverController {
 
 	@ApiOperation(value = "네이버 뉴스검색 결과를 반환한다.", response = List.class)
 	@GetMapping("/news/{keyword}")
-	public String shop(@PathVariable("keyword") String keyword, HttpServletResponse response) throws UnsupportedEncodingException { // 네이버 쇼핑검색 요청
+	public String shop(@PathVariable("keyword") String keyword, HttpServletResponse response)
+			throws UnsupportedEncodingException { // 네이버 쇼핑검색 요청
 		String text = null;
 		text = URLEncoder.encode(keyword, "UTF-8");
 
@@ -47,7 +47,7 @@ public class NaverController {
 
 		response.setContentType("text/json;charset=UTF-8");
 		System.out.println(responseBody);
-		
+
 		return responseBody;
 	}
 

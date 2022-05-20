@@ -19,14 +19,17 @@
 	<select id="selectDong" parameterType="String"
 		resultType="com.ssafy.happyhouse.model.dto.SidoGugunDongCodeDto">
 		SELECT substring(DONGCODE,6,5) as dongcode, DONGNAME
-		FROM DONGCODE
-		WHERE substring(DONGCODE, 1, 5) = #{guguncode} AND DONGNAME IS NOT NULL;
+		FROM
+		DONGCODE
+		WHERE substring(DONGCODE, 1, 5) = #{guguncode} AND DONGNAME IS
+		NOT NULL;
 	</select>
-	<select id="selectaddress" parameterType="String"
+
+	<select id="selectAddress" parameterType="String"
 		resultType="com.ssafy.happyhouse.model.dto.SidoGugunDongCodeDto">
-		SELECT sidoName,gugunName,dongname,dongcode,lat,lng
-		FROM baseaddress
-		WHERE DONGCODE = #{addcode} 
+		SELECT sidoName,gugunName,dongname, dongcode
+		FROM dongcode
+		WHERE DONGCODE = #{addcode}
 	</select>
 
 </mapper>

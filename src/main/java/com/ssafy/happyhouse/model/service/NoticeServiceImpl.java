@@ -53,7 +53,7 @@ public class NoticeServiceImpl implements NoticeService {
 
 		return result;
 	}
-	
+
 	@Override
 	public Map<String, Object> search(int page, String ntitle) throws SQLException {
 		// 현재 페이지, 하단 시작 페이지, 하단 끝 페이지, 게시글 목록, 총 페이지 수
@@ -106,7 +106,5 @@ public class NoticeServiceImpl implements NoticeService {
 	public int update(NoticeDto notice) throws SQLException {
 		return mapper.update(notice);
 	}
-	
-	
 
 }

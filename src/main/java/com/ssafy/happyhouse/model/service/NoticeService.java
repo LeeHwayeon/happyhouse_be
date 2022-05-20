@@ -12,7 +12,7 @@ public interface NoticeService {
 
 	public Map<String, Object> search(int page, String ntitle) throws SQLException;
 
-	public Map<String, Object> read(int nno,String userid) throws SQLException;
+	public Map<String, Object> read(int nno, String userid) throws SQLException;
 
 	public int delete(int nno) throws SQLException;
 

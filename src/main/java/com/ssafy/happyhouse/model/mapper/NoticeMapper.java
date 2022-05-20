@@ -18,7 +18,8 @@ public interface NoticeMapper {
 
 	public List<NoticeDto> selectList(@Param("start") int start, @Param("count") int count) throws SQLException;
 
-	public List<NoticeDto> searchList(@Param("start") int start, @Param("count") int count, String ntitle) throws SQLException;
+	public List<NoticeDto> searchList(@Param("start") int start, @Param("count") int count, String ntitle)
+			throws SQLException;
 
 	public int selectTotalCount() throws SQLException;
 

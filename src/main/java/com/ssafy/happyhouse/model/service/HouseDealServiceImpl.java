@@ -25,7 +25,7 @@ public class HouseDealServiceImpl implements HouseDealService {
 			arr[i] = mapper.selectAptDeal(dongName).get(i);
 			System.out.println(arr[i]);
 		}
-		
+
 		mergeSort(arr);
 
 		List<HouseDeal> final_tmp = new ArrayList<HouseDeal>();
@@ -45,7 +45,7 @@ public class HouseDealServiceImpl implements HouseDealService {
 			arr[i] = mapper.selectAptDeal(aptName).get(i);
 			System.out.println(arr[i]);
 		}
-		
+
 		mergeSort(arr);
 
 		List<HouseDeal> final_tmp = new ArrayList<HouseDeal>();
@@ -64,7 +64,7 @@ public class HouseDealServiceImpl implements HouseDealService {
 			arr[i] = mapper.selectDongAptName(dongName, aptName).get(i);
 			System.out.println(arr[i]);
 		}
-		
+
 		mergeSort(arr);
 
 		List<HouseDeal> final_tmp = new ArrayList<HouseDeal>();
@@ -92,8 +92,8 @@ public class HouseDealServiceImpl implements HouseDealService {
 
 	private static void merge(HouseDeal[] arr, int start, int mid, int end) {
 //		tmp = arr.clone();
-		
-		for(int i=0; i<arr.length; i++) {
+
+		for (int i = 0; i < arr.length; i++) {
 			tmp[i] = arr[i];
 		}
 

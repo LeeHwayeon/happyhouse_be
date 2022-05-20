@@ -30,9 +30,9 @@ public class SidoGugunDongCodeServiceImpl implements SidoGugunDongCodeService {
 	}
 
 	@Override
-	public SidoGugunDongCodeDto selectaddress(String addcode) throws Exception {
-		
-		return mapper.selectaddress(addcode);
+	public SidoGugunDongCodeDto selectAddress(String addcode) throws Exception {
+
+		return mapper.selectAddress(addcode);
 	}
 
 }

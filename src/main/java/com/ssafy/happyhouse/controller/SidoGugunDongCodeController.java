@@ -52,13 +52,13 @@ public class SidoGugunDongCodeController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+
 	@GetMapping("/addcode/{addcode}")
-	public ResponseEntity<?> selectadd(@PathVariable String addcode) {
+	public ResponseEntity<?> selectAddress(@PathVariable String addcode) {
 		System.out.println(addcode);
 		try {
-			System.out.println(service.selectaddress(addcode));
-			return new ResponseEntity<SidoGugunDongCodeDto>(service.selectaddress(addcode), HttpStatus.ACCEPTED);
+			System.out.println(service.selectAddress(addcode));
+			return new ResponseEntity<SidoGugunDongCodeDto>(service.selectAddress(addcode), HttpStatus.ACCEPTED);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
