@@ -14,25 +14,36 @@ public interface HouseDealMapper {
 	List<HouseDealDto> selectSidoApt(String sidocode) throws SQLException;
 
 	// 시도 구군 입력
-//	List<HouseDealDto> selectSidoGugunApt(String guguncode) throws SQLException;
-
 	List<HouseDealDto> selectSidoGugunApt(@Param(value = "guguncode") String guguncode,
 			@Param(value = "buildyear") int buildyear, @Param(value = "aptprice") int aptprice,
 			@Param(value = "page") int page) throws SQLException;
-	
-	int selectSidototal(@Param(value = "guguncode") String guguncode,
-			@Param(value = "buildyear") int buildyear, @Param(value = "aptprice") int aptprice
-			)throws SQLException;
+
+	int selectSidototal(@Param(value = "guguncode") String guguncode, @Param(value = "buildyear") int buildyear,
+			@Param(value = "aptprice") int aptprice) throws SQLException;
 
 	// 시도 구군 동 입력
-	List<HouseDealDto> selectDongApt(String dongcode) throws SQLException;
+	List<HouseDealDto> selectDongApt(@Param(value = "dongcode") String dongcode,
+			@Param(value = "buildyear") int buildyear, @Param(value = "aptprice") int aptprice,
+			@Param(value = "page") int page) throws SQLException;
+
+	int selectDongApttotal(@Param(value = "dongcode") String dongcode, @Param(value = "buildyear") int buildyear,
+			@Param(value = "aptprice") int aptprice) throws SQLException;
 
 	// 아파트이름 입력
+
 	List<HouseDealDto> selectAptname(@Param(value = "aptname") String aptname,
-			@Param(value = "guguncode") String guguncode) throws SQLException;
+			@Param(value = "guguncode") String guguncode, @Param(value = "buildyear") int buildyear,
+			@Param(value = "aptprice") int aptprice, @Param(value = "page") int page) throws SQLException;
+
+	int selectAptnametotal(@Param(value = "aptname") String aptname, @Param(value = "guguncode") String guguncode,
+			@Param(value = "buildyear") int buildyear, @Param(value = "aptprice") int aptprice) throws SQLException;
 
 	// 시도 구군 동 아파트이름 모두 입력
-	List<HouseDealDto> selectApt(@Param(value = "dongcode") String dongcode, @Param(value = "aptname") String aptname)
-			throws SQLException;
+	List<HouseDealDto> selectApt(@Param(value = "aptname") String aptname,
+			@Param(value = "dongcode") String dongcode, @Param(value = "buildyear") int buildyear,
+			@Param(value = "aptprice") int aptprice, @Param(value = "page") int page) throws SQLException;
+
+	int selectApttotal(@Param(value = "aptname") String aptname, @Param(value = "dongcode") String dongcode,
+			@Param(value = "buildyear") int buildyear, @Param(value = "aptprice") int aptprice) throws SQLException;
 
 }

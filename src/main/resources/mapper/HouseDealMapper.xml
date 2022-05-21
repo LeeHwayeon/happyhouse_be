@@ -3,7 +3,7 @@
 <mapper
 	namespace="com.ssafy.happyhouse.model.mapper.HouseDealMapper">
 	
-<!-- 	<select id="selectSidoApt" parameterType="String" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
+	<!-- <select id="selectSidoApt" parameterType="String" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
 		select d.dealAmount , d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor, d.aptCode, i.buildYear, i.dongCode, i.apartmentName, i.lat, i.lng
 		from houseDeal as d join houseinfo as i
 		on d.aptcode = i.aptcode
@@ -11,7 +11,7 @@
 	</select> -->
 	
 	
-	
+	<!-- 시도 구군 검색 -->
 	
 	<select id="selectSidoGugunApt" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
 		select d.dealAmount , d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor, d.aptCode, i.buildYear, i.dongCode, i.apartmentName, i.lat, i.lng
@@ -27,35 +27,52 @@
         where left(i.dongcode,5) = #{guguncode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice};
 	</select>
 	
-	<!-- i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice} and -->
+	<!-- 시도 구군 동 검색  -->
 	
-	
-	
-	<select id="selectDongApt" parameterType="String" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
+	<select id="selectDongApt" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
 		select d.dealAmount , d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor, d.aptCode, i.buildYear, i.dongCode, i.apartmentName, i.lat, i.lng
-		from houseDeal as d , houseinfo as i
-		where d.aptcode = i.aptcode and i.dongcode = #{dongcode};
+		from houseDeal as d join houseinfo as i
+        on d.aptcode = i.aptcode
+        where i.dongcode = #{dongcode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice} limit #{page},10; 
 	</select>
 	
-	
-	
-	
-	
-	<select id="selectAptname" parameterType="String" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
-		select d.dealAmount , d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor, d.aptCode, i.buildYear, i.dongCode, i.apartmentName, i.lat, i.lng
-		from houseDeal as d , houseinfo as i
-		where d.aptcode = i.aptcode and i.apartmentname like CONCAT('%', #{aptname}, '%') and substring(i.dongcode,1,5) = #{guguncode};
+	<select id="selectDongApttotal" resultType="int">
+        select count(*) as count
+        from houseDeal as d join houseinfo as i
+        on d.aptcode = i.aptcode
+        where i.dongcode = #{dongcode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice};
 	</select>
 	
+	<!-- 시도 구군 아파트 이름검색 -->
 	
-	
-	
-	
-	
-	<select id="selectApt" parameterType="String" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
+	<select id="selectAptname" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
 		select d.dealAmount , d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor, d.aptCode, i.buildYear, i.dongCode, i.apartmentName, i.lat, i.lng
-		from houseDeal as d , houseinfo as i
-		where d.aptcode = i.aptcode and i.apartmentname like CONCAT('%', #{aptname}, '%') and i.dongcode = #{dongcode};
+		from houseDeal as d join houseinfo as i
+        on d.aptcode = i.aptcode
+         where left(i.dongcode,5) = #{guguncode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice} and i.apartmentname like CONCAT('%', #{aptname}, '%') limit #{page},10; 
+	</select>
+	
+	<select id="selectAptnametotal" resultType="int">
+        select count(*) as count
+        from houseDeal as d join houseinfo as i
+        on d.aptcode = i.aptcode
+        where left(i.dongcode,5) = #{guguncode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice} and i.apartmentname like CONCAT('%', #{aptname}, '%');
+	</select>
+	
+	<!-- 시도 구군 동 아파트 이름 검색 -->
+	
+	<select id="selectApt" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
+		select d.dealAmount , d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor, d.aptCode, i.buildYear, i.dongCode, i.apartmentName, i.lat, i.lng
+		from houseDeal as d join houseinfo as i
+        on d.aptcode = i.aptcode
+         where i.dongcode = #{dongcode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice} and i.apartmentname like CONCAT('%', #{aptname}, '%') limit #{page},10; 
+	</select>
+	
+	<select id="selectApttotal" resultType="int">
+        select count(*) as count
+        from houseDeal as d join houseinfo as i
+        on d.aptcode = i.aptcode
+        where i.dongcode = #{dongcode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice} and i.apartmentname like CONCAT('%', #{aptname}, '%');
 	</select>
 
 </mapper>

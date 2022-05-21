@@ -14,12 +14,12 @@ public interface HouseDealService {
 	Map<String, Object> selectSidoGugunApt(String guguncode, int buildyear,int aptprice, int page) throws Exception;
 	
 	// 시도 구군 동 입력
-	List<HouseDealDto> selectDongApt(String dongcode) throws Exception;
+	Map<String, Object> selectDongApt(String dongcode, int buildyear,int aptprice, int page) throws Exception;
 
 	// 아파트이름 입력
-	List<HouseDealDto> selectAptname(String aptname, String guguncode) throws Exception;
+	Map<String, Object> selectAptname(String guguncode, int buildyear,int aptprice, int page , String aptname) throws Exception;
 
 	// 시도 구군 동 아파트이름 모두 입력
-	List<HouseDealDto> selectApt(String dongcode, String aptname) throws Exception;
+	Map<String, Object> selectApt(String dongcode, int buildyear,int aptprice, int page , String aptname) throws Exception;
 
 }
