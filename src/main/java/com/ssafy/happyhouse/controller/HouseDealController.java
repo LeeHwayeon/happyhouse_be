@@ -27,8 +27,15 @@ public class HouseDealController {
 	public ResponseEntity<?> selectSidoGugunApt(@RequestParam(value = "p", defaultValue = "1") int page,
 			@PathVariable("guguncode") String guguncode, @PathVariable("buildyear") int buildyear,
 			@PathVariable("aptprice") String aptprice) {
+		int ap = 0;
+		if (aptprice.contains(".")) {
+			ap = Integer.parseInt(aptprice.replace(".", "")) * 1000;
+		}else {
+			ap = Integer.parseInt(aptprice) * 10000;			
+		}
 		try {
-			return new ResponseEntity<Map<String,Object>>(service.selectSidoGugunApt(guguncode,buildyear,aptprice,page), HttpStatus.ACCEPTED);
+			return new ResponseEntity<Map<String, Object>>(service.selectSidoGugunApt(guguncode, buildyear, ap, page),
+					HttpStatus.ACCEPTED);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
