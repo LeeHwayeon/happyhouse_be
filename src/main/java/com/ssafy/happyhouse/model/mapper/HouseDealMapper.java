@@ -17,12 +17,12 @@ public interface HouseDealMapper {
 //	List<HouseDealDto> selectSidoGugunApt(String guguncode) throws SQLException;
 
 	List<HouseDealDto> selectSidoGugunApt(@Param(value = "guguncode") String guguncode,
-			@Param(value = "buildyear") int buildyear, @Param(value = "aptprice") String aptprice,
+			@Param(value = "buildyear") int buildyear, @Param(value = "aptprice") int aptprice,
 			@Param(value = "page") int page) throws SQLException;
 	
 	int selectSidototal(@Param(value = "guguncode") String guguncode,
-			@Param(value = "buildyear") int buildyear, @Param(value = "aptprice") String aptprice,
-			@Param(value = "page") int page)throws SQLException;
+			@Param(value = "buildyear") int buildyear, @Param(value = "aptprice") int aptprice
+			)throws SQLException;
 
 	// 시도 구군 동 입력
 	List<HouseDealDto> selectDongApt(String dongcode) throws SQLException;

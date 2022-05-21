@@ -17,17 +17,17 @@
 		select d.dealAmount , d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor, d.aptCode, i.buildYear, i.dongCode, i.apartmentName, i.lat, i.lng
 		from houseDeal as d join houseinfo as i
         on d.aptcode = i.aptcode
-        where i.buildyear >= #{buildyear} and left(i.dongcode,5) = #{guguncode} and replace(d.dealAmount,',','') >= #{aptprice} limit #{page},10; 
+        where left(i.dongcode,5) = #{guguncode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice} limit #{page},10; 
 	</select>
 	
 	<select id="selectSidototal" resultType="int">
         select count(*) as count
         from houseDeal as d join houseinfo as i
         on d.aptcode = i.aptcode
-        where i.buildyear >= #{buildyear} and left(i.dongcode,5) = #{guguncode} and replace(d.dealAmount,',','') >= #{aptprice};
+        where left(i.dongcode,5) = #{guguncode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice};
 	</select>
 	
-	
+	<!-- i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice} and -->
 	
 	
 	

@@ -27,6 +27,8 @@ public class HouseDealController {
 	public ResponseEntity<?> selectSidoGugunApt(@RequestParam(value = "p", defaultValue = "1") int page,
 			@PathVariable("guguncode") String guguncode, @PathVariable("buildyear") int buildyear,
 			@PathVariable("aptprice") String aptprice) {
+		System.out.println("컨트롤러"+page+"/" +guguncode+"/"+ buildyear+"/"+ aptprice+"/");
+		
 		int ap = 0;
 		if (aptprice.contains(".")) {
 			ap = Integer.parseInt(aptprice.replace(".", "")) * 1000;

@@ -12,7 +12,7 @@ public interface HouseDealService {
 
 	// 시도 구군 입력
 	Map<String, Object> selectSidoGugunApt(String guguncode, int buildyear,int aptprice, int page) throws Exception;
-
+	
 	// 시도 구군 동 입력
 	List<HouseDealDto> selectDongApt(String dongcode) throws Exception;
 

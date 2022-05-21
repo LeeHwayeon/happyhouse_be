@@ -28,14 +28,13 @@ public class HouseDealServiceImpl implements HouseDealService {
 		System.out.println("값 : " + page + "/" + guguncode + "/" + buildyear + "/" + aptprice);
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		result.put("page", page);
-		String ap = aptprice+"";
 
 		int startPage = (page - 1) / 10 * 10 + 1; // 11~20 모두 11페이지가 첫번째임
 		result.put("startPage", startPage);
-		System.out.println("totalpage : " + mapper.selectSidototal(guguncode, buildyear, ap , page));
+		System.out.println("totalpage : " + mapper.selectSidototal(guguncode, buildyear, aptprice));
 		
 		
-		int totalCount = mapper.selectSidototal(guguncode, buildyear, ap , page);
+		int totalCount = mapper.selectSidototal(guguncode, buildyear, aptprice);
 		System.out.println("totalCount : " + totalCount);
 		int totalPage = totalCount / 10; // 한 페이지당 게시글 10개
 		if (totalCount % 10 > 0) { // 게시글이 56개이면 56/10 = 5페이진데 한페이지 더 필요함
@@ -50,7 +49,7 @@ public class HouseDealServiceImpl implements HouseDealService {
 		}
 		result.put("endPage", endPage);
 
-		List<HouseDealDto> housedealList = mapper.selectSidoGugunApt(guguncode, buildyear, ap,
+		List<HouseDealDto> housedealList = mapper.selectSidoGugunApt(guguncode, buildyear, aptprice,
 				(page - 1) * 10);
 		result.put("housedealList", housedealList);
 		System.out.println(housedealList);
