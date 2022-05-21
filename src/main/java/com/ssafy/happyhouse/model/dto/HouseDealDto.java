@@ -1,7 +1,5 @@
 package com.ssafy.happyhouse.model.dto;
 
-import java.math.BigInteger;
-
 public class HouseDealDto {
 	private String dealAmount;
 	private int dealYear;
@@ -16,9 +14,13 @@ public class HouseDealDto {
 	private String lat;
 	private String lng;
 	private int count;
+	private int min;
+	private int max;
 
+	
 	public HouseDealDto(String dealAmount, int dealYear, int dealMonth, int dealDay, String area, String floor,
-			long aptCode, int buildYear, String dongCode, String apartmentName, String lat, String lng,int count) {
+			long aptCode, int buildYear, String dongCode, String apartmentName, String lat, String lng, int count,
+			int min, int max) {
 		super();
 		this.dealAmount = dealAmount;
 		this.dealYear = dealYear;
@@ -33,6 +35,24 @@ public class HouseDealDto {
 		this.lat = lat;
 		this.lng = lng;
 		this.count = count;
+		this.min = min;
+		this.max = max;
+	}
+
+	public int getMin() {
+		return min;
+	}
+
+	public void setMin(int min) {
+		this.min = min;
+	}
+
+	public int getMax() {
+		return max;
+	}
+
+	public void setMax(int max) {
+		this.max = max;
 	}
 
 	public HouseDealDto() {
@@ -145,10 +165,10 @@ public class HouseDealDto {
 
 	@Override
 	public String toString() {
-		return "HouseDeal [dealAmount=" + dealAmount + ", dealYear=" + dealYear + ", dealMonth=" + dealMonth
+		return "HouseDealDto [dealAmount=" + dealAmount + ", dealYear=" + dealYear + ", dealMonth=" + dealMonth
 				+ ", dealDay=" + dealDay + ", area=" + area + ", floor=" + floor + ", aptCode=" + aptCode
 				+ ", buildYear=" + buildYear + ", dongCode=" + dongCode + ", apartmentName=" + apartmentName + ", lat="
-				+ lat + ", lng=" + lng + "]";
+				+ lat + ", lng=" + lng + ", count=" + count + ", min=" + min + ", max=" + max + "]";
 	}
 
 }

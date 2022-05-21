@@ -27,13 +27,13 @@ public class HouseDealController {
 	public ResponseEntity<?> selectSidoGugunApt(@RequestParam(value = "p", defaultValue = "1") int page,
 			@PathVariable("guguncode") String guguncode, @PathVariable("buildyear") int buildyear,
 			@PathVariable("aptprice") String aptprice) {
-		System.out.println("컨트롤러"+page+"/" +guguncode+"/"+ buildyear+"/"+ aptprice+"/");
-		
+		System.out.println("컨트롤러" + page + "/" + guguncode + "/" + buildyear + "/" + aptprice + "/");
+
 		int ap = 0;
 		if (aptprice.contains(".")) {
 			ap = Integer.parseInt(aptprice.replace(".", "")) * 1000;
-		}else {
-			ap = Integer.parseInt(aptprice) * 10000;			
+		} else {
+			ap = Integer.parseInt(aptprice) * 10000;
 		}
 		try {
 			return new ResponseEntity<Map<String, Object>>(service.selectSidoGugunApt(guguncode, buildyear, ap, page),
@@ -48,13 +48,13 @@ public class HouseDealController {
 	public ResponseEntity<?> selectDongApt(@RequestParam(value = "p", defaultValue = "1") int page,
 			@PathVariable("dongcode") String dongcode, @PathVariable("buildyear") int buildyear,
 			@PathVariable("aptprice") String aptprice) {
-		System.out.println("컨트롤러"+page+"/" +dongcode+"/"+ buildyear+"/"+ aptprice+"/");
-		
+		System.out.println("컨트롤러" + page + "/" + dongcode + "/" + buildyear + "/" + aptprice + "/");
+
 		int ap = 0;
 		if (aptprice.contains(".")) {
 			ap = Integer.parseInt(aptprice.replace(".", "")) * 1000;
-		}else {
-			ap = Integer.parseInt(aptprice) * 10000;			
+		} else {
+			ap = Integer.parseInt(aptprice) * 10000;
 		}
 		try {
 			return new ResponseEntity<Map<String, Object>>(service.selectDongApt(dongcode, buildyear, ap, page),
@@ -64,43 +64,53 @@ public class HouseDealController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+
 	@GetMapping("/guguncode/{guguncode}/buildyear/{buildyear}/aptprice/{aptprice}/aptname/{aptname}")
 	public ResponseEntity<?> selectAptname(@RequestParam(value = "p", defaultValue = "1") int page,
 			@PathVariable("guguncode") String guguncode, @PathVariable("buildyear") int buildyear,
-			@PathVariable("aptprice") String aptprice , @PathVariable("aptname") String aptname) {
-		System.out.println("컨트롤러"+page+"/" +guguncode+"/"+ buildyear+"/"+ aptprice+"/");
-		
+			@PathVariable("aptprice") String aptprice, @PathVariable("aptname") String aptname) {
+		System.out.println("컨트롤러" + page + "/" + guguncode + "/" + buildyear + "/" + aptprice + "/");
+
 		int ap = 0;
 		if (aptprice.contains(".")) {
 			ap = Integer.parseInt(aptprice.replace(".", "")) * 1000;
-		}else {
-			ap = Integer.parseInt(aptprice) * 10000;			
+		} else {
+			ap = Integer.parseInt(aptprice) * 10000;
 		}
 		try {
-			return new ResponseEntity<Map<String, Object>>(service.selectAptname(guguncode, buildyear, ap, page, aptname),
+			return new ResponseEntity<Map<String, Object>>(
+					service.selectAptname(guguncode, buildyear, ap, page, aptname), HttpStatus.ACCEPTED);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@GetMapping("/dongcode/{dongcode}/buildyear/{buildyear}/aptprice/{aptprice}/aptname/{aptname}")
+	public ResponseEntity<?> selectApt(@RequestParam(value = "p", defaultValue = "1") int page,
+			@PathVariable("dongcode") String dongcode, @PathVariable("buildyear") int buildyear,
+			@PathVariable("aptprice") String aptprice, @PathVariable("aptname") String aptname) {
+		System.out.println("컨트롤러" + page + "/" + dongcode + "/" + buildyear + "/" + aptprice + "/");
+
+		int ap = 0;
+		if (aptprice.contains(".")) {
+			ap = Integer.parseInt(aptprice.replace(".", "")) * 1000;
+		} else {
+			ap = Integer.parseInt(aptprice) * 10000;
+		}
+		try {
+			return new ResponseEntity<Map<String, Object>>(service.selectApt(dongcode, buildyear, ap, page, aptname),
 					HttpStatus.ACCEPTED);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
-	
-	@GetMapping("/dongcode/{dongcode}/buildyear/{buildyear}/aptprice/{aptprice}/aptname/{aptname}")
-	public ResponseEntity<?> selectApt(@RequestParam(value = "p", defaultValue = "1") int page,
-			@PathVariable("dongcode") String dongcode, @PathVariable("buildyear") int buildyear,
-			@PathVariable("aptprice") String aptprice , @PathVariable("aptname") String aptname) {
-		System.out.println("컨트롤러"+page+"/" +dongcode+"/"+ buildyear+"/"+ aptprice+"/");
-		
-		int ap = 0;
-		if (aptprice.contains(".")) {
-			ap = Integer.parseInt(aptprice.replace(".", "")) * 1000;
-		}else {
-			ap = Integer.parseInt(aptprice) * 10000;			
-		}
+
+	@GetMapping("/detail/{aptCode}")
+	public ResponseEntity<?> selectDetail(@PathVariable("aptCode") long aptCode) {
 		try {
-			return new ResponseEntity<Map<String, Object>>(service.selectApt(dongcode, buildyear, ap, page, aptname),
-					HttpStatus.ACCEPTED);
+			return new ResponseEntity<List>(service.selectDetail(aptCode), HttpStatus.ACCEPTED);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

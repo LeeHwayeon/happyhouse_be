@@ -45,5 +45,7 @@ public interface HouseDealMapper {
 
 	int selectApttotal(@Param(value = "aptname") String aptname, @Param(value = "dongcode") String dongcode,
 			@Param(value = "buildyear") int buildyear, @Param(value = "aptprice") int aptprice) throws SQLException;
+	
+	List<HouseDealDto> selectDetail(long aptCode) throws SQLException;
 
 }

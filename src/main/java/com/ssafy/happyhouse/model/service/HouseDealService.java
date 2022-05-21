@@ -22,4 +22,7 @@ public interface HouseDealService {
 	// 시도 구군 동 아파트이름 모두 입력
 	Map<String, Object> selectApt(String dongcode, int buildyear,int aptprice, int page , String aptname) throws Exception;
 
+	// 아파트 상세
+	List<HouseDealDto> selectDetail(long aptCode) throws Exception;
+
 }

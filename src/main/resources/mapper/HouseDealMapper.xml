@@ -12,67 +12,98 @@
 	
 	
 	<!-- 시도 구군 검색 -->
-	
 	<select id="selectSidoGugunApt" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
-		select d.dealAmount , d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor, d.aptCode, i.buildYear, i.dongCode, i.apartmentName, i.lat, i.lng
+		select ANY_VALUE(min(replace(d.dealAmount,',',''))) as min,ANY_VALUE(max(replace(d.dealAmount,',',''))) as max, ANY_VALUE(d.dealAmount) as dealAmount, ANY_VALUE(d.dealYear) as dealYear, ANY_VALUE(d.dealMonth) as dealMonth, ANY_VALUE(d.dealDay) as dealDay, ANY_VALUE(d.area) as area, ANY_VALUE(d.floor) as floor, ANY_VALUE(d.aptCode) as aptCode, ANY_VALUE(i.buildYear) as buildYear, ANY_VALUE(i.dongCode) as dongCode, i.apartmentName, ANY_VALUE(i.lat) as lat, ANY_VALUE(i.lng) as lng
 		from houseDeal as d join houseinfo as i
-        on d.aptcode = i.aptcode
-        where left(i.dongcode,5) = #{guguncode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice} limit #{page},10; 
+		on d.aptcode = i.aptcode
+		where left(i.dongcode,5) = #{guguncode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice} 
+		group by i.aptcode
+		limit #{page},10;
 	</select>
 	
 	<select id="selectSidototal" resultType="int">
-        select count(*) as count
-        from houseDeal as d join houseinfo as i
-        on d.aptcode = i.aptcode
-        where left(i.dongcode,5) = #{guguncode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice};
+		select count(*) 
+	 	from (
+	        select count(i.aptcode) as count
+	        from houseDeal as d join houseinfo as i
+	        on d.aptcode = i.aptcode
+	        where left(i.dongcode,5) = #{guguncode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice}
+	        group by i.aptcode
+	    ) as t;
 	</select>
 	
 	<!-- 시도 구군 동 검색  -->
-	
 	<select id="selectDongApt" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
-		select d.dealAmount , d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor, d.aptCode, i.buildYear, i.dongCode, i.apartmentName, i.lat, i.lng
+        select ANY_VALUE(min(replace(d.dealAmount,',',''))) as min,ANY_VALUE(max(replace(d.dealAmount,',',''))) as max, ANY_VALUE(d.dealAmount) as dealAmount, ANY_VALUE(d.dealYear) as dealYear, ANY_VALUE(d.dealMonth) as dealMonth, ANY_VALUE(d.dealDay) as dealDay, ANY_VALUE(d.area) as area, ANY_VALUE(d.floor) as floor, ANY_VALUE(d.aptCode) as aptCode, ANY_VALUE(i.buildYear) as buildYear, ANY_VALUE(i.dongCode) as dongCode, i.apartmentName, ANY_VALUE(i.lat) as lat, ANY_VALUE(i.lng) as lng
 		from houseDeal as d join houseinfo as i
-        on d.aptcode = i.aptcode
-        where i.dongcode = #{dongcode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice} limit #{page},10; 
+		on d.aptcode = i.aptcode
+		where i.dongcode = #{dongcode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice}
+		group by i.aptcode
+		limit #{page},10;
 	</select>
 	
 	<select id="selectDongApttotal" resultType="int">
-        select count(*) as count
-        from houseDeal as d join houseinfo as i
-        on d.aptcode = i.aptcode
-        where i.dongcode = #{dongcode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice};
+		select count(*) 
+	 	from (
+	        select count(i.aptcode) as count
+	        from houseDeal as d join houseinfo as i
+	        on d.aptcode = i.aptcode
+	        where i.dongcode = #{dongcode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice}
+	       	group by i.aptcode
+	    ) as t;
 	</select>
 	
 	<!-- 시도 구군 아파트 이름검색 -->
 	
 	<select id="selectAptname" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
-		select d.dealAmount , d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor, d.aptCode, i.buildYear, i.dongCode, i.apartmentName, i.lat, i.lng
+        select ANY_VALUE(min(replace(d.dealAmount,',',''))) as min,ANY_VALUE(max(replace(d.dealAmount,',',''))) as max, ANY_VALUE(d.dealAmount) as dealAmount, ANY_VALUE(d.dealYear) as dealYear, ANY_VALUE(d.dealMonth) as dealMonth, ANY_VALUE(d.dealDay) as dealDay, ANY_VALUE(d.area) as area, ANY_VALUE(d.floor) as floor, ANY_VALUE(d.aptCode) as aptCode, ANY_VALUE(i.buildYear) as buildYear, ANY_VALUE(i.dongCode) as dongCode, i.apartmentName, ANY_VALUE(i.lat) as lat, ANY_VALUE(i.lng) as lng
 		from houseDeal as d join houseinfo as i
         on d.aptcode = i.aptcode
-         where left(i.dongcode,5) = #{guguncode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice} and i.apartmentname like CONCAT('%', #{aptname}, '%') limit #{page},10; 
+        where left(i.dongcode,5) = #{guguncode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice} and i.apartmentname like CONCAT('%', #{aptname}, '%') 
+        group by i.aptcode
+        limit #{page},10; 
 	</select>
 	
 	<select id="selectAptnametotal" resultType="int">
-        select count(*) as count
-        from houseDeal as d join houseinfo as i
-        on d.aptcode = i.aptcode
-        where left(i.dongcode,5) = #{guguncode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice} and i.apartmentname like CONCAT('%', #{aptname}, '%');
+		select count(*) 
+	 	from (
+	        select count(i.aptcode) as count
+	        from houseDeal as d join houseinfo as i
+	        on d.aptcode = i.aptcode
+	        where left(i.dongcode,5) = #{guguncode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice} and i.apartmentname like CONCAT('%', #{aptname}, '%')
+	        group by i.aptcode
+       	) as t;
 	</select>
 	
 	<!-- 시도 구군 동 아파트 이름 검색 -->
 	
 	<select id="selectApt" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
-		select d.dealAmount , d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor, d.aptCode, i.buildYear, i.dongCode, i.apartmentName, i.lat, i.lng
+        select ANY_VALUE(min(replace(d.dealAmount,',',''))) as min,ANY_VALUE(max(replace(d.dealAmount,',',''))) as max, ANY_VALUE(d.dealAmount) as dealAmount, ANY_VALUE(d.dealYear) as dealYear, ANY_VALUE(d.dealMonth) as dealMonth, ANY_VALUE(d.dealDay) as dealDay, ANY_VALUE(d.area) as area, ANY_VALUE(d.floor) as floor, ANY_VALUE(d.aptCode) as aptCode, ANY_VALUE(i.buildYear) as buildYear, ANY_VALUE(i.dongCode) as dongCode, i.apartmentName, ANY_VALUE(i.lat) as lat, ANY_VALUE(i.lng) as lng
 		from houseDeal as d join houseinfo as i
         on d.aptcode = i.aptcode
-         where i.dongcode = #{dongcode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice} and i.apartmentname like CONCAT('%', #{aptname}, '%') limit #{page},10; 
+        where i.dongcode = #{dongcode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice} and i.apartmentname like CONCAT('%', #{aptname}, '%')
+        group by i.aptcode limit #{page},10; 
 	</select>
 	
 	<select id="selectApttotal" resultType="int">
-        select count(*) as count
-        from houseDeal as d join houseinfo as i
-        on d.aptcode = i.aptcode
-        where i.dongcode = #{dongcode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice} and i.apartmentname like CONCAT('%', #{aptname}, '%');
+		select count(*) 
+	 	from (
+	        select count(i.aptcode) as count
+	        from houseDeal as d join houseinfo as i
+	        on d.aptcode = i.aptcode
+	        where i.dongcode = #{dongcode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice} and i.apartmentname like CONCAT('%', #{aptname}, '%')
+	        group by i.aptcode
+        ) as t;
+	</select>
+	
+	<!-- 아파트 상세 -->
+	<select id="selectDetail" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
+		select ANY_VALUE(d.dealAmount) as dealAmount, ANY_VALUE(d.dealYear) as dealYear, ANY_VALUE(d.dealMonth) as dealMonth, ANY_VALUE(d.dealDay) as dealDay, ANY_VALUE(d.area) as area, ANY_VALUE(d.floor) as floor, ANY_VALUE(d.aptCode) as aptCode, ANY_VALUE(i.buildYear) as buildYear, ANY_VALUE(i.dongCode) as dongCode, i.apartmentName, ANY_VALUE(i.lat) as lat, ANY_VALUE(i.lng) as lng
+		from houseDeal as d join houseinfo as i
+		on d.aptcode = i.aptcode
+		where i.aptcode = #{aptCode}
+		order by dealYear desc
+		limit 1, 10;
 	</select>
 
 </mapper>
