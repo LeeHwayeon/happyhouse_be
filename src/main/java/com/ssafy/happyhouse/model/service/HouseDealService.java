@@ -1,6 +1,7 @@
 package com.ssafy.happyhouse.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.ssafy.happyhouse.model.dto.HouseDealDto;
 
@@ -10,7 +11,7 @@ public interface HouseDealService {
 	List<HouseDealDto> selectSidoApt(String sidocode) throws Exception;
 
 	// 시도 구군 입력
-	List<HouseDealDto> selectSidoGugunApt(String guguncode) throws Exception;
+	Map<String, Object> selectSidoGugunApt(String guguncode, int buildyear,String aptprice, int page) throws Exception;
 
 	// 시도 구군 동 입력
 	List<HouseDealDto> selectDongApt(String dongcode) throws Exception;

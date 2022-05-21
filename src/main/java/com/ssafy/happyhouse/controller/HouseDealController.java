@@ -1,6 +1,7 @@
 package com.ssafy.happyhouse.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.happyhouse.model.service.HouseDealService;
@@ -21,10 +23,12 @@ public class HouseDealController {
 	@Autowired
 	private HouseDealService service;
 
-	@GetMapping("/sidogugun/{guguncode}")
-	public ResponseEntity<?> selectSidoGugunApt(@PathVariable("guguncode") String guguncode) {
+	@GetMapping("/sidogugun/{guguncode}/buildyear/{buildyear}/aptprice/{aptprice}")
+	public ResponseEntity<?> selectSidoGugunApt(@RequestParam(value = "p", defaultValue = "1") int page,
+			@PathVariable("guguncode") String guguncode, @PathVariable("buildyear") int buildyear,
+			@PathVariable("aptprice") String aptprice) {
 		try {
-			return new ResponseEntity<List>(service.selectSidoGugunApt(guguncode), HttpStatus.ACCEPTED);
+			return new ResponseEntity<Map<String,Object>>(service.selectSidoGugunApt(guguncode,buildyear,aptprice,page), HttpStatus.ACCEPTED);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -52,7 +56,7 @@ public class HouseDealController {
 		}
 	}
 
-	@GetMapping(value= {"/aptname/{aptname}/dongcode/{dongcode}"})
+	@GetMapping(value = { "/aptname/{aptname}/dongcode/{dongcode}" })
 	public ResponseEntity<?> selectApt(@PathVariable("aptname") String aptname,
 			@PathVariable("dongcode") String dongcode) {
 		try {

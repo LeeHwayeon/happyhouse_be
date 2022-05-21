@@ -15,9 +15,10 @@ public class HouseDealDto {
 	private String apartmentName;
 	private String lat;
 	private String lng;
+	private int count;
 
 	public HouseDealDto(String dealAmount, int dealYear, int dealMonth, int dealDay, String area, String floor,
-			long aptCode, int buildYear, String dongCode, String apartmentName, String lat, String lng) {
+			long aptCode, int buildYear, String dongCode, String apartmentName, String lat, String lng,int count) {
 		super();
 		this.dealAmount = dealAmount;
 		this.dealYear = dealYear;
@@ -31,6 +32,7 @@ public class HouseDealDto {
 		this.apartmentName = apartmentName;
 		this.lat = lat;
 		this.lng = lng;
+		this.count = count;
 	}
 
 	public HouseDealDto() {
@@ -91,6 +93,14 @@ public class HouseDealDto {
 
 	public void setAptCode(long aptCode) {
 		this.aptCode = aptCode;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
 	}
 
 	public int getBuildYear() {

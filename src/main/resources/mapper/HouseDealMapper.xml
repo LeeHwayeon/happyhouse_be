@@ -10,11 +10,26 @@
 		where d.dealyear =2022 and d.dealmonth = 4  and left(i.dongcode,2) = #{sidocode}; 
 	</select>
 	
-	<select id="selectSidoGugunApt" parameterType="String" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
+	
+	
+	
+	<select id="selectSidoGugunApt" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
 		select d.dealAmount , d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor, d.aptCode, i.buildYear, i.dongCode, i.apartmentName, i.lat, i.lng
-		from houseDeal as d , houseinfo as i
-		where d.aptcode = i.aptcode and substring(i.dongcode,1,5) = #{guguncode};
+		from houseDeal as d join houseinfo as i
+        on d.aptcode = i.aptcode
+        where i.buildyear >= #{buildyear} and left(i.dongcode,2) = #{guguncode} and d.dealAmount >= #{aptprice} limit #{page},10; 
 	</select>
+	
+	<select id="selectSidototal" resultType="int">
+        select count(*) as count
+        from houseDeal as d join houseinfo as i
+        on d.aptcode = i.aptcode
+        where i.buildyear >= #{buildyear} and left(i.dongcode,2) = #{guguncode} and d.dealAmount >= #{aptprice}; 
+	</select>
+	
+	
+	
+	
 	
 	<select id="selectDongApt" parameterType="String" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
 		select d.dealAmount , d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor, d.aptCode, i.buildYear, i.dongCode, i.apartmentName, i.lat, i.lng
@@ -22,11 +37,20 @@
 		where d.aptcode = i.aptcode and i.dongcode = #{dongcode};
 	</select>
 	
+	
+	
+	
+	
 	<select id="selectAptname" parameterType="String" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
 		select d.dealAmount , d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor, d.aptCode, i.buildYear, i.dongCode, i.apartmentName, i.lat, i.lng
 		from houseDeal as d , houseinfo as i
 		where d.aptcode = i.aptcode and i.apartmentname like CONCAT('%', #{aptname}, '%') and substring(i.dongcode,1,5) = #{guguncode};
 	</select>
+	
+	
+	
+	
+	
 	
 	<select id="selectApt" parameterType="String" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
 		select d.dealAmount , d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor, d.aptCode, i.buildYear, i.dongCode, i.apartmentName, i.lat, i.lng

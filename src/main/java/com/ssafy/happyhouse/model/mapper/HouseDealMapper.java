@@ -2,6 +2,7 @@ package com.ssafy.happyhouse.model.mapper;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -13,7 +14,15 @@ public interface HouseDealMapper {
 	List<HouseDealDto> selectSidoApt(String sidocode) throws SQLException;
 
 	// 시도 구군 입력
-	List<HouseDealDto> selectSidoGugunApt(String guguncode) throws SQLException;
+//	List<HouseDealDto> selectSidoGugunApt(String guguncode) throws SQLException;
+
+	List<HouseDealDto> selectSidoGugunApt(@Param(value = "guguncode") String guguncode,
+			@Param(value = "buildyear") int buildyear, @Param(value = "aptprice") String aptprice,
+			@Param(value = "page") int page) throws SQLException;
+	
+	int selectSidototal(@Param(value = "guguncode") String guguncode,
+			@Param(value = "buildyear") int buildyear, @Param(value = "aptprice") String aptprice,
+			@Param(value = "page") int page)throws SQLException;
 
 	// 시도 구군 동 입력
 	List<HouseDealDto> selectDongApt(String dongcode) throws SQLException;
