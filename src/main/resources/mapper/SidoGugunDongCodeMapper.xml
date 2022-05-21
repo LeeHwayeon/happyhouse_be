@@ -11,9 +11,9 @@
 
 	<select id="selectGugun" parameterType="String"
 		resultType="com.ssafy.happyhouse.model.dto.SidoGugunDongCodeDto">
-		SELECT substring(GUGUNCODE,1,5) as guguncode, GUGUNNAME
-		FROM GUGUNCODE
-		WHERE left(GUGUNCODE, 2) = #{sidocode};
+		SELECT distinct GUGUNNAME, substring(dongcode,1,5) as guguncode
+		FROM dongcode
+		WHERE left(dongcode, 2) = #{sidocode}  and substring(dongcode, 6,5) not like "00000";
 	</select>
 
 	<select id="selectDong" parameterType="String"

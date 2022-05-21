@@ -1,6 +1,5 @@
 package com.ssafy.happyhouse.model.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +20,8 @@ public class HouseDealServiceImpl implements HouseDealService {
 	}
 
 	@Override
-	public List<HouseDealDto> selectGugunApt(String guguncode) throws Exception {
-		return mapper.selectGugunApt(guguncode);
+	public List<HouseDealDto> selectSidoGugunApt(String guguncode) throws Exception {
+		return mapper.selectSidoGugunApt(guguncode);
 	}
 
 	@Override
@@ -31,8 +30,8 @@ public class HouseDealServiceImpl implements HouseDealService {
 	}
 
 	@Override
-	public List<HouseDealDto> selectAptname(String aptname) throws Exception {
-		return mapper.selectAptname(aptname);
+	public List<HouseDealDto> selectAptname(String aptname, String guguncode) throws Exception {
+		return mapper.selectAptname(aptname, guguncode);
 	}
 
 	@Override

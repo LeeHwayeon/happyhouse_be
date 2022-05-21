@@ -7,10 +7,10 @@
 		select d.dealAmount , d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor, d.aptCode, i.buildYear, i.dongCode, i.apartmentName, i.lat, i.lng
 		from houseDeal as d join houseinfo as i
 		on d.aptcode = i.aptcode
-		where d.dealyear =2022 and d.dealmonth = 4  and left(i.dongcode,2) = #{sidocode} limit 1,10; 
+		where d.dealyear =2022 and d.dealmonth = 4  and left(i.dongcode,2) = #{sidocode}; 
 	</select>
 	
-	<select id="selectGugunApt" parameterType="String" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
+	<select id="selectSidoGugunApt" parameterType="String" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
 		select d.dealAmount , d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor, d.aptCode, i.buildYear, i.dongCode, i.apartmentName, i.lat, i.lng
 		from houseDeal as d , houseinfo as i
 		where d.aptcode = i.aptcode and substring(i.dongcode,1,5) = #{guguncode};
@@ -19,19 +19,19 @@
 	<select id="selectDongApt" parameterType="String" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
 		select d.dealAmount , d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor, d.aptCode, i.buildYear, i.dongCode, i.apartmentName, i.lat, i.lng
 		from houseDeal as d , houseinfo as i
-		where d.aptcode = i.aptcode and substring(i.dongcode,6,5) = #{dongcode};
+		where d.aptcode = i.aptcode and i.dongcode = #{dongcode};
 	</select>
 	
 	<select id="selectAptname" parameterType="String" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
 		select d.dealAmount , d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor, d.aptCode, i.buildYear, i.dongCode, i.apartmentName, i.lat, i.lng
 		from houseDeal as d , houseinfo as i
-		where d.aptcode = i.aptcode and i.apartmentname like CONCAT('%', #{aptname}, '%')
+		where d.aptcode = i.aptcode and i.apartmentname like CONCAT('%', #{aptname}, '%') and substring(i.dongcode,1,5) = #{guguncode};
 	</select>
 	
-	<select id="selectApt" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
+	<select id="selectApt" parameterType="String" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
 		select d.dealAmount , d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor, d.aptCode, i.buildYear, i.dongCode, i.apartmentName, i.lat, i.lng
 		from houseDeal as d , houseinfo as i
-		where d.aptcode = i.aptcode and i.apartmentname like CONCAT('%', #{aptname}, '%') and substring(i.dongcode,6,5) = #{dongcode};
+		where d.aptcode = i.aptcode and i.apartmentname like CONCAT('%', #{aptname}, '%') and i.dongcode = #{dongcode};
 	</select>
 
 </mapper>
