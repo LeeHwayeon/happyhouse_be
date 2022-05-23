@@ -3,9 +3,9 @@
 <mapper namespace="com.ssafy.happyhouse.model.mapper.GymMapper">
 
 	<select id="selectList" resultType="com.ssafy.happyhouse.model.dto.GymDto">
-		select sdoro ,sjibun,sname sx,sy
+		select *
 		from s_tb
-		where swork =1;
+		where swork =1 and sjibun != "";
 	</select>
 
 </mapper>
