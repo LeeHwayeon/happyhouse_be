@@ -158,6 +158,7 @@ public class HouseDealServiceImpl implements HouseDealService {
 
 	@Override
 	public List<HouseDealDto> selectDetail(long aptCode) throws Exception {
+		System.out.println(mapper.selectDetail(aptCode));
 		return mapper.selectDetail(aptCode);
 	}
 
