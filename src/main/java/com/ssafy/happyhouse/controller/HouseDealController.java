@@ -116,4 +116,14 @@ public class HouseDealController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
+
+	@GetMapping("/deal10")
+	public ResponseEntity<?> selectDeal() {
+		try {
+			return new ResponseEntity<List>(service.selectDeal(), HttpStatus.ACCEPTED);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+	}
 }

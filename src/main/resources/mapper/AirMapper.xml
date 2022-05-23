@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssafy.happyhouse.model.mapper.AirMapper">
-	<select id="list" resultType="com.ssafy.happyhouse.model.dto.AirDto">
+	<select id="selectGu"
+		resultType="com.ssafy.happyhouse.model.dto.AirDto">
+		SELECT *
+		from air_tb
+		where agugunName = #{gugunName};
+	</select>
+	
+	<select id="avgResult" resultType="com.ssafy.happyhouse.model.dto.AirDto">
+	SELECT agugunName, avg(adust) as avg
+	from air_tb
+	group by agugunName
+	order by avg; 
 	</select>
 
 </mapper>

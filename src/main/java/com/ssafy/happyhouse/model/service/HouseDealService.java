@@ -24,5 +24,8 @@ public interface HouseDealService {
 
 	// 아파트 상세
 	List<HouseDealDto> selectDetail(long aptCode) throws Exception;
+	
+	List<HouseDealDto> selectDeal() throws Exception;
+
 
 }
