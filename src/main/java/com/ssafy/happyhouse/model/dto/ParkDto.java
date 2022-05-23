@@ -1,48 +1,26 @@
 package com.ssafy.happyhouse.model.dto;
 
 public class ParkDto {
-	private String psido;
-	private String pgugunName;
-	private String ptype;
 	private String pname;
-	private String pdongName;
-	private String paddress;
+	private String ptype;
+	private String pdoro;
+	private String pjibun;
+	private String plat;
+	private String plng;
+	private String parea;
 
 	public ParkDto() {
 	}
 
-	public ParkDto(String psido, String pgugunName, String ptype, String pname, String pdongName, String paddress) {
+	public ParkDto(String pname, String ptype, String pdoro, String pjibun, String plat, String plng, String parea) {
 		super();
-		this.psido = psido;
-		this.pgugunName = pgugunName;
-		this.ptype = ptype;
 		this.pname = pname;
-		this.pdongName = pdongName;
-		this.paddress = paddress;
-	}
-
-	public String getPsido() {
-		return psido;
-	}
-
-	public void setPsido(String psido) {
-		this.psido = psido;
-	}
-
-	public String getPgugunName() {
-		return pgugunName;
-	}
-
-	public void setPgugunName(String pgugunName) {
-		this.pgugunName = pgugunName;
-	}
-
-	public String getPtype() {
-		return ptype;
-	}
-
-	public void setPtype(String ptype) {
 		this.ptype = ptype;
+		this.pdoro = pdoro;
+		this.pjibun = pjibun;
+		this.plat = plat;
+		this.plng = plng;
+		this.parea = parea;
 	}
 
 	public String getPname() {
@@ -53,26 +31,58 @@ public class ParkDto {
 		this.pname = pname;
 	}
 
-	public String getPdongName() {
-		return pdongName;
+	public String getPtype() {
+		return ptype;
 	}
 
-	public void setPdongName(String pdongName) {
-		this.pdongName = pdongName;
+	public void setPtype(String ptype) {
+		this.ptype = ptype;
 	}
 
-	public String getPaddress() {
-		return paddress;
+	public String getPdoro() {
+		return pdoro;
 	}
 
-	public void setPaddress(String paddress) {
-		this.paddress = paddress;
+	public void setPdoro(String pdoro) {
+		this.pdoro = pdoro;
+	}
+
+	public String getPjibun() {
+		return pjibun;
+	}
+
+	public void setPjibun(String pjibun) {
+		this.pjibun = pjibun;
+	}
+
+	public String getPlat() {
+		return plat;
+	}
+
+	public void setPlat(String plat) {
+		this.plat = plat;
+	}
+
+	public String getPlng() {
+		return plng;
+	}
+
+	public void setPlng(String plng) {
+		this.plng = plng;
+	}
+
+	public String getParea() {
+		return parea;
+	}
+
+	public void setParea(String parea) {
+		this.parea = parea;
 	}
 
 	@Override
 	public String toString() {
-		return "ParkDto [psido=" + psido + ", pgugunName=" + pgugunName + ", ptype=" + ptype + ", pname=" + pname
-				+ ", pdongName=" + pdongName + ", paddress=" + paddress + "]";
+		return "ParkDto [pname=" + pname + ", ptype=" + ptype + ", pdoro=" + pdoro + ", pjibun=" + pjibun + ", plat="
+				+ plat + ", plng=" + plng + ", parea=" + parea + "]";
 	}
 
 }
