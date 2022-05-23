@@ -5,7 +5,7 @@
 	<select id="selectList" resultType="com.ssafy.happyhouse.model.dto.GymDto">
 		select *
 		from s_tb
-		where swork =1 and sjibun != "";
+		where swork = 1 and sjibun LIKE CONCAT('% ', #{dong}, ' %');
 	</select>
 
 </mapper>

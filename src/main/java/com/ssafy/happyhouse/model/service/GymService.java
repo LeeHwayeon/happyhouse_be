@@ -5,5 +5,5 @@ import java.util.List;
 import com.ssafy.happyhouse.model.dto.GymDto;
 
 public interface GymService {
-	public List<GymDto> selectList() throws Exception;
+	public List<GymDto> selectList(String dong) throws Exception;
 }

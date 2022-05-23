@@ -115,7 +115,14 @@
 			<version>2.5.7</version>
 			<type>pom</type>
 		</dependency>
-		
+
+		<!-- 좌표 변환 -->
+<!-- 		<dependency>
+			<groupId>com.google.code.geocoder-java</groupId>
+			<artifactId>geocoder-java</artifactId>
+			<version>0.16</version>
+		</dependency> -->
+
 	</dependencies>
 
 	<build>

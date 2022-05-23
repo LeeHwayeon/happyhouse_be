@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,10 +24,10 @@ public class GymController {
 	@Autowired
 	private GymService service;
 
-	@GetMapping()
-	public ResponseEntity<?> parklist() {
+	@GetMapping("/{dong}")
+	public ResponseEntity<?> parklist(@PathVariable("dong") String dong) {
 		try {
-			return new ResponseEntity<List>(service.selectList(), HttpStatus.ACCEPTED);
+			return new ResponseEntity<List>(service.selectList(dong), HttpStatus.ACCEPTED);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

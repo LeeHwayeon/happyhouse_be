@@ -6,5 +6,5 @@ import java.util.List;
 import com.ssafy.happyhouse.model.dto.GymDto;
 
 public interface GymMapper {
-	public List<GymDto> selectList() throws SQLException;
+	public List<GymDto> selectList(String dong) throws SQLException;
 }
