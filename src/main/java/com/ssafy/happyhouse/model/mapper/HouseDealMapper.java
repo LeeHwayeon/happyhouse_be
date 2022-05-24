@@ -2,11 +2,11 @@ package com.ssafy.happyhouse.model.mapper;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
 import com.ssafy.happyhouse.model.dto.HouseDealDto;
+import com.ssafy.happyhouse.model.dto.HouseDealTopTenDto;
 
 public interface HouseDealMapper {
 
@@ -49,6 +49,6 @@ public interface HouseDealMapper {
 	List<HouseDealDto> selectDetail(long aptCode) throws SQLException;
 	
 	// 2022년 4월 거래 많이 된 시군구 조회하기
-	List<HouseDealDto> selectDeal() throws SQLException;
+	List<HouseDealTopTenDto> selectDeal() throws SQLException;
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.ssafy.happyhouse.model.dto.HouseDealDto;
+import com.ssafy.happyhouse.model.dto.HouseDealTopTenDto;
 
 public interface HouseDealService {
 
@@ -25,7 +26,7 @@ public interface HouseDealService {
 	// 아파트 상세
 	List<HouseDealDto> selectDetail(long aptCode) throws Exception;
 	
-	List<HouseDealDto> selectDeal() throws Exception;
+	List<HouseDealTopTenDto> selectDeal() throws Exception;
 
 
 }

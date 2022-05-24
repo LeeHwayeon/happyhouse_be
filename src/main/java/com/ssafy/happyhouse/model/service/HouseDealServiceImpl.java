@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.happyhouse.model.dto.HouseDealDto;
-import com.ssafy.happyhouse.model.dto.NoticeDto;
+import com.ssafy.happyhouse.model.dto.HouseDealTopTenDto;
 import com.ssafy.happyhouse.model.mapper.HouseDealMapper;
 
 @Service
@@ -163,7 +163,7 @@ public class HouseDealServiceImpl implements HouseDealService {
 	}
 
 	@Override
-	public List<HouseDealDto> selectDeal() throws Exception {
+	public List<HouseDealTopTenDto> selectDeal() throws Exception {
 		return mapper.selectDeal();
 	}
 

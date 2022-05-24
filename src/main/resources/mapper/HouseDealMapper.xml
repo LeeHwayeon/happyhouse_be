@@ -107,14 +107,20 @@
 	</select>
 	
 	<!-- 2022.4월 거래 상위 10 -->
-	<select id="selectDeal" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
-		select count(d.aptCode) as count, ANY_VALUE(i.dongCode) as dongcode, ANY_VALUE(min(cast(replace(d.dealAmount,',','') as unsigned))) as min, ANY_VALUE(max(cast(replace(d.dealAmount,',','') as unsigned))) as max
+	<select id="selectDeal" resultType="com.ssafy.happyhouse.model.dto.HouseDealTopTenDto">
+		select *
+		from 
+		(select count(d.aptCode) as count, ANY_VALUE(i.dongCode) as dongcode, ANY_VALUE(min(cast(replace(d.dealAmount,',','') as unsigned))) as min, ANY_VALUE(max(cast(replace(d.dealAmount,',','') as unsigned))) as max
 		from housedeal d join houseinfo i
 		on d.aptCode = i.aptCode
 		where d.dealYear = 2022 and d.dealMonth = 4
 		group by d.aptCode
 		order by count desc
-		limit 10;
+		limit 10) as a
+		join (
+		select sidoName, gugunName, dongName, dongcode
+		from dongcode ) as b
+		where a.dongcode = b.dongcode;
 	</select>
 
 </mapper>
