@@ -13,7 +13,7 @@
 	
 	<!-- 시도 구군 검색 -->
 	<select id="selectSidoGugunApt" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
-		select ANY_VALUE(min(cast(replace(d.dealAmount,',','') as unsigned))) as min, ANY_VALUE(max(cast(replace(d.dealAmount,',','') as unsigned))) as max, ANY_VALUE(d.dealAmount) as dealAmount, ANY_VALUE(d.dealYear) as dealYear, ANY_VALUE(d.dealMonth) as dealMonth, ANY_VALUE(d.dealDay) as dealDay, ANY_VALUE(d.area) as area, ANY_VALUE(d.floor) as floor, ANY_VALUE(d.aptCode) as aptCode, ANY_VALUE(i.buildYear) as buildYear, ANY_VALUE(i.dongCode) as dongCode, i.apartmentName, ANY_VALUE(i.lat) as lat, ANY_VALUE(i.lng) as lng
+		select ANY_VALUE(i.dong)as dong,ANY_VALUE(min(cast(replace(d.dealAmount,',','') as unsigned))) as min, ANY_VALUE(max(cast(replace(d.dealAmount,',','') as unsigned))) as max, ANY_VALUE(d.dealAmount) as dealAmount, ANY_VALUE(d.dealYear) as dealYear, ANY_VALUE(d.dealMonth) as dealMonth, ANY_VALUE(d.dealDay) as dealDay, ANY_VALUE(d.area) as area, ANY_VALUE(d.floor) as floor, ANY_VALUE(d.aptCode) as aptCode, ANY_VALUE(i.buildYear) as buildYear, ANY_VALUE(i.dongCode) as dongCode, i.apartmentName, ANY_VALUE(i.lat) as lat, ANY_VALUE(i.lng) as lng
 		from houseDeal as d join houseinfo as i
 		on d.aptcode = i.aptcode
 		where left(i.dongcode,5) = #{guguncode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice} 
@@ -34,7 +34,7 @@
 	
 	<!-- 시도 구군 동 검색  -->
 	<select id="selectDongApt" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
-        select ANY_VALUE(min(cast(replace(d.dealAmount,',','') as unsigned))) as min, ANY_VALUE(max(cast(replace(d.dealAmount,',','') as unsigned))) as max, ANY_VALUE(d.dealAmount) as dealAmount, ANY_VALUE(d.dealYear) as dealYear, ANY_VALUE(d.dealMonth) as dealMonth, ANY_VALUE(d.dealDay) as dealDay, ANY_VALUE(d.area) as area, ANY_VALUE(d.floor) as floor, ANY_VALUE(d.aptCode) as aptCode, ANY_VALUE(i.buildYear) as buildYear, ANY_VALUE(i.dongCode) as dongCode, i.apartmentName, ANY_VALUE(i.lat) as lat, ANY_VALUE(i.lng) as lng
+        select ANY_VALUE(i.dong)as dong,ANY_VALUE(min(cast(replace(d.dealAmount,',','') as unsigned))) as min, ANY_VALUE(max(cast(replace(d.dealAmount,',','') as unsigned))) as max, ANY_VALUE(d.dealAmount) as dealAmount, ANY_VALUE(d.dealYear) as dealYear, ANY_VALUE(d.dealMonth) as dealMonth, ANY_VALUE(d.dealDay) as dealDay, ANY_VALUE(d.area) as area, ANY_VALUE(d.floor) as floor, ANY_VALUE(d.aptCode) as aptCode, ANY_VALUE(i.buildYear) as buildYear, ANY_VALUE(i.dongCode) as dongCode, i.apartmentName, ANY_VALUE(i.lat) as lat, ANY_VALUE(i.lng) as lng
 		from houseDeal as d join houseinfo as i
 		on d.aptcode = i.aptcode
 		where i.dongcode = #{dongcode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice}
@@ -56,7 +56,7 @@
 	<!-- 시도 구군 아파트 이름검색 -->
 	
 	<select id="selectAptname" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
-        select ANY_VALUE(min(cast(replace(d.dealAmount,',','') as unsigned))) as min, ANY_VALUE(max(cast(replace(d.dealAmount,',','') as unsigned))) as max, ANY_VALUE(d.dealAmount) as dealAmount, ANY_VALUE(d.dealYear) as dealYear, ANY_VALUE(d.dealMonth) as dealMonth, ANY_VALUE(d.dealDay) as dealDay, ANY_VALUE(d.area) as area, ANY_VALUE(d.floor) as floor, ANY_VALUE(d.aptCode) as aptCode, ANY_VALUE(i.buildYear) as buildYear, ANY_VALUE(i.dongCode) as dongCode, i.apartmentName, ANY_VALUE(i.lat) as lat, ANY_VALUE(i.lng) as lng
+        select ANY_VALUE(i.dong)as dong,ANY_VALUE(min(cast(replace(d.dealAmount,',','') as unsigned))) as min, ANY_VALUE(max(cast(replace(d.dealAmount,',','') as unsigned))) as max, ANY_VALUE(d.dealAmount) as dealAmount, ANY_VALUE(d.dealYear) as dealYear, ANY_VALUE(d.dealMonth) as dealMonth, ANY_VALUE(d.dealDay) as dealDay, ANY_VALUE(d.area) as area, ANY_VALUE(d.floor) as floor, ANY_VALUE(d.aptCode) as aptCode, ANY_VALUE(i.buildYear) as buildYear, ANY_VALUE(i.dongCode) as dongCode, i.apartmentName, ANY_VALUE(i.lat) as lat, ANY_VALUE(i.lng) as lng
 		from houseDeal as d join houseinfo as i
         on d.aptcode = i.aptcode
         where left(i.dongcode,5) = #{guguncode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice} and i.apartmentname like CONCAT('%', #{aptname}, '%') 
@@ -78,7 +78,7 @@
 	<!-- 시도 구군 동 아파트 이름 검색 -->
 	
 	<select id="selectApt" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
-        select ANY_VALUE(min(cast(replace(d.dealAmount,',','') as unsigned))) as min, ANY_VALUE(max(cast(replace(d.dealAmount,',','') as unsigned))) as max, ANY_VALUE(d.dealAmount) as dealAmount, ANY_VALUE(d.dealYear) as dealYear, ANY_VALUE(d.dealMonth) as dealMonth, ANY_VALUE(d.dealDay) as dealDay, ANY_VALUE(d.area) as area, ANY_VALUE(d.floor) as floor, ANY_VALUE(d.aptCode) as aptCode, ANY_VALUE(i.buildYear) as buildYear, ANY_VALUE(i.dongCode) as dongCode, i.apartmentName, ANY_VALUE(i.lat) as lat, ANY_VALUE(i.lng) as lng
+        select ANY_VALUE(i.dong)as dong,ANY_VALUE(min(cast(replace(d.dealAmount,',','') as unsigned))) as min, ANY_VALUE(max(cast(replace(d.dealAmount,',','') as unsigned))) as max, ANY_VALUE(d.dealAmount) as dealAmount, ANY_VALUE(d.dealYear) as dealYear, ANY_VALUE(d.dealMonth) as dealMonth, ANY_VALUE(d.dealDay) as dealDay, ANY_VALUE(d.area) as area, ANY_VALUE(d.floor) as floor, ANY_VALUE(d.aptCode) as aptCode, ANY_VALUE(i.buildYear) as buildYear, ANY_VALUE(i.dongCode) as dongCode, i.apartmentName, ANY_VALUE(i.lat) as lat, ANY_VALUE(i.lng) as lng
 		from houseDeal as d join houseinfo as i
         on d.aptcode = i.aptcode
         where i.dongcode = #{dongcode} and i.buildyear >= #{buildyear} and replace(d.dealAmount,',','') >= #{aptprice} and i.apartmentname like CONCAT('%', #{aptname}, '%')
@@ -98,7 +98,7 @@
 	
 	<!-- 아파트 상세 -->
 	<select id="selectDetail" resultType="com.ssafy.happyhouse.model.dto.HouseDealDto">
-		select ANY_VALUE(d.dealAmount) as dealAmount, ANY_VALUE(d.dealYear) as dealYear,ANY_VALUE(dong) as dong, ANY_VALUE(d.dealMonth) as dealMonth, ANY_VALUE(d.dealDay) as dealDay, ANY_VALUE(d.area) as area, ANY_VALUE(d.floor) as floor, ANY_VALUE(d.aptCode) as aptCode, ANY_VALUE(i.buildYear) as buildYear, ANY_VALUE(i.dongCode) as dongCode, i.apartmentName, ANY_VALUE(i.lat) as lat, ANY_VALUE(i.lng) as lng
+		select ANY_VALUE(i.dong)as dong,ANY_VALUE(d.dealAmount) as dealAmount, ANY_VALUE(d.dealYear) as dealYear, ANY_VALUE(d.dealMonth) as dealMonth, ANY_VALUE(d.dealDay) as dealDay, ANY_VALUE(d.area) as area, ANY_VALUE(d.floor) as floor, ANY_VALUE(d.aptCode) as aptCode, ANY_VALUE(i.buildYear) as buildYear, ANY_VALUE(i.dongCode) as dongCode, i.apartmentName, ANY_VALUE(i.lat) as lat, ANY_VALUE(i.lng) as lng
 		from houseDeal as d join houseinfo as i
 		on d.aptcode = i.aptcode
 		where i.aptcode = #{aptCode}
