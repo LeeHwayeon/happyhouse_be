@@ -15,13 +15,20 @@ public class AirServiceImpl implements AirService{
 	private AirMapper mapper;
 	
 	@Override
-	public List<AirDto> selectGu(String gugunName) throws Exception {
-		return mapper.selectGu(gugunName);
+	public Integer selectGu(String dongCode) throws Exception {
+		System.out.println(mapper.selectGu(dongCode));
+		return mapper.selectGu(dongCode);
 	}
 
 	@Override
 	public List<AirDto> avgResult() throws Exception {
 		return mapper.avgResult();
+	}
+
+	@Override
+	public List<AirDto> gugunAirSix(String dongCode) throws Exception {
+		System.out.println(mapper.gugunAirSix(dongCode));
+		return mapper.gugunAirSix(dongCode);
 	}
 
 }

@@ -6,7 +6,9 @@ import java.util.List;
 import com.ssafy.happyhouse.model.dto.AirDto;
 
 public interface AirMapper {
-	List<AirDto> selectGu(String gugunName) throws SQLException;
+	Integer selectGu(String dongCode) throws SQLException;
+	
+	List<AirDto> gugunAirSix(String dongCode) throws SQLException;
 
 	List<AirDto> avgResult() throws SQLException;
 }

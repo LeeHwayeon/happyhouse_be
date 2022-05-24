@@ -5,8 +5,11 @@ import java.util.List;
 import com.ssafy.happyhouse.model.dto.AirDto;
 
 public interface AirService {
-	List<AirDto> selectGu(String gugunName) throws Exception;
+	Integer selectGu(String dongCode) throws Exception;
 	
 	List<AirDto> avgResult() throws Exception;
+	
+	List<AirDto> gugunAirSix(String dongCode) throws Exception;
+
 
 }

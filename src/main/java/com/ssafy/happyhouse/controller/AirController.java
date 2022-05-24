@@ -1,6 +1,8 @@
 package com.ssafy.happyhouse.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,12 +25,15 @@ public class AirController {
 	@Autowired
 	private AirService service;
 
-	// 지역구에 맞는 2015~~2022 미세먼지 조회 
-	@GetMapping("/{gugunName}")
-	public ResponseEntity<?> selectGu(@PathVariable("gugunName") String gugunName) {
-
+	// 지역구에 맞는 2015~~2022 미세먼지 조회
+	@GetMapping("/{dongCode}")
+	public ResponseEntity<?> selectGu(@PathVariable("dongCode") String dongCode) {
+		System.out.println("dongCode" + dongCode);
 		try {
-			return new ResponseEntity<List>(service.selectGu(gugunName), HttpStatus.ACCEPTED);
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("rank", service.selectGu(dongCode));
+			map.put("results", service.gugunAirSix(dongCode));
+			return new ResponseEntity<Map<String, Object>>(map, HttpStatus.ACCEPTED);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -38,7 +43,6 @@ public class AirController {
 	// 지역구별로 2015~2020 미세먼지 평균값 적은 순
 	@GetMapping("/avg")
 	public ResponseEntity<?> avgResult() {
-
 		try {
 			return new ResponseEntity<List>(service.avgResult(), HttpStatus.ACCEPTED);
 		} catch (Exception e) {

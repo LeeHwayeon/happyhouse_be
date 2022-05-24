@@ -6,17 +6,19 @@ public class AirDto {
 	private int adust;
 	private int amdust;
 	private float avg;
+	private int count;
 
 	public AirDto() {
 	}
 
-	public AirDto(int ayear, String agugunName, int adust, int amdust, float avg) {
+	public AirDto(int ayear, String agugunName, int adust, int amdust, float avg, int count) {
 		super();
 		this.ayear = ayear;
 		this.agugunName = agugunName;
 		this.adust = adust;
 		this.amdust = amdust;
 		this.avg = avg;
+		this.count = count;
 	}
 
 	public int getAyear() {
@@ -59,10 +61,18 @@ public class AirDto {
 		this.avg = avg;
 	}
 
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
 	@Override
 	public String toString() {
 		return "AirDto [ayear=" + ayear + ", agugunName=" + agugunName + ", adust=" + adust + ", amdust=" + amdust
-				+ ", avg=" + avg + "]";
+				+ ", avg=" + avg + ", count=" + count + "]";
 	}
 
 }
