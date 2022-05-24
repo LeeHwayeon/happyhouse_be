@@ -9,7 +9,7 @@
        <![CDATA[ having avg(adust) < ( select avg(a.adust)
                             from air_tb a join dongcode d
                             on a.agugunName = d.gugunName
-                            where d.dongCode = #{dongCode}
+                            where left(d.dongCode,5) = #{dongCode}
                             group by agugunName
                             ) ]]>
                ) as t; 
@@ -19,7 +19,7 @@
 		select *
 		from air_tb a join dongcode d
 		on a.agugunName = d.gugunName
-		where d.dongcode = #{dongCode}
+		where left(d.dongCode,5) = #{dongCode}
 	</select>
 	
 	<select id="avgResult" resultType="com.ssafy.happyhouse.model.dto.AirDto">
