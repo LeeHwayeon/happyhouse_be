@@ -141,6 +141,8 @@ public class Usercontroller {
 
 	@PutMapping("/updatepass")
 	public String updatePass(@RequestBody String uid) throws Exception {
+		System.out.println("uid" + uid);
+		uid = uid.replaceAll("\"", "");
 		String upass = "";
 		for (int i = 0; i < 8; i++) {
 			int rndVal = (int) (Math.random() * 62);
@@ -152,7 +154,7 @@ public class Usercontroller {
 				upass += (char) (rndVal + 55);
 			}
 		}
-		if(userService.updatePass(uid, upass)>=1)
+		if (userService.updatePass(uid, upass) >= 1)
 			return upass;
 		return "FAIL";
 	}
