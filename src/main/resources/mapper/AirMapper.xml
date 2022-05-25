@@ -16,7 +16,7 @@
 	</select>
 	
 	<select id="gugunAirSix" resultType="com.ssafy.happyhouse.model.dto.AirDto">
-		select *
+		select distinct ayear,agugunName,adust
 		from air_tb a join dongcode d
 		on a.agugunName = d.gugunName
 		where left(d.dongCode,5) = #{dongCode}
